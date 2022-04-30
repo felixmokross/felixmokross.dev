@@ -56,7 +56,9 @@ async function getPostSlugsFromGitHub(preview: boolean) {
       },
     }
   );
-  if (response.status !== 200) throw new Error(response.status.toString());
+
+  if (response.status !== 200)
+    throw new Error(`GitHub responded with ${response.status}`);
 
   return ((await response.json()) as GithubItem[]).map((item) => item.name);
 
@@ -72,13 +74,16 @@ async function getPostContentFromGitHub(slug: string, preview: boolean) {
     `https://raw.githubusercontent.com/${process.env.GITHUB_USERNAME}/${process.env.GITHUB_CONTENT_REPO}/${branchName}/posts/${slug}/post.md`,
     {
       headers: {
-        Authorization: `Basic ${Buffer.from(
-          `${process.env.GITHUB_USERNAME}:${process.env.GITHUB_TOKEN}`
-        ).toString("base64")}`,
+        Authorization: basicAuth(
+          process.env.GITHUB_USERNAME!,
+          process.env.GITHUB_TOKEN!
+        ),
       },
     }
   );
-  if (response.status !== 200) throw new Error(response.status.toString());
+
+  if (response.status !== 200)
+    throw new Error(`GitHub responded with ${response.status}`);
 
   return await response.text();
 }
