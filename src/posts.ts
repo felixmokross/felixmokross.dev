@@ -5,9 +5,9 @@ import dayjs from "dayjs";
 
 export async function getPostBySlug(
   slug: string,
-  preview = false
+  previewBranch: string | null = null
 ): Promise<Post> {
-  const fileContents = await getPostContentFromGitHub(slug, preview);
+  const fileContents = await getPostContentFromGitHub(slug, previewBranch);
   const { data, content } = matter(fileContents);
   return {
     slug,
@@ -21,12 +21,14 @@ export async function getPostBySlug(
   };
 }
 
-export async function getAllPosts(preview = false): Promise<PostMeta[]> {
-  const filenames = await getPostSlugsFromGitHub(preview);
+export async function getAllPosts(
+  previewBranch: string | null = null
+): Promise<PostMeta[]> {
+  const filenames = await getPostSlugsFromGitHub(previewBranch);
 
   const posts = new Array<PostMeta>(filenames.length);
   for (let i = 0; i < posts.length; i++) {
-    const post = await getPostBySlug(filenames[i], preview);
+    const post = await getPostBySlug(filenames[i], previewBranch);
 
     posts[i] = {
       slug: post.slug,
@@ -42,8 +44,8 @@ export async function getAllPosts(preview = false): Promise<PostMeta[]> {
   return orderBy(posts, (p) => p.date, "desc");
 }
 
-async function getPostSlugsFromGitHub(preview: boolean) {
-  const branchName = preview ? "preview" : "main";
+async function getPostSlugsFromGitHub(previewBranch: string | null) {
+  const branchName = previewBranch || "main";
 
   const response = await fetch(
     `https://api.github.com/repos/${process.env.GITHUB_USERNAME}/${process.env.GITHUB_CONTENT_REPO}/contents/posts?ref=${branchName}`,
@@ -67,8 +69,11 @@ async function getPostSlugsFromGitHub(preview: boolean) {
   };
 }
 
-async function getPostContentFromGitHub(slug: string, preview: boolean) {
-  const branchName = preview ? "preview" : "main";
+async function getPostContentFromGitHub(
+  slug: string,
+  previewBranch: string | null
+) {
+  const branchName = previewBranch || "main";
 
   const response = await fetch(
     `https://raw.githubusercontent.com/${process.env.GITHUB_USERNAME}/${process.env.GITHUB_CONTENT_REPO}/${branchName}/posts/${slug}/post.md`,

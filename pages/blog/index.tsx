@@ -1,11 +1,18 @@
 import type { GetStaticProps, NextPage } from "next";
-import { baseUrl, getImageUrl, getTitle, PostMeta } from "../../src/util";
+import {
+  baseUrl,
+  getImageUrl,
+  getTitle,
+  PostMeta,
+  PreviewData,
+} from "../../src/util";
 import Head from "next/head";
 import Layout from "../../src/Layout";
 import preview from "../../src/preview.png";
 import { getAllPosts } from "../../src/posts";
 import PostListItem from "../../src/blog/home/PostListItem";
 import Bio from "../../src/blog/home/Bio";
+import { ParsedUrlQuery } from "querystring";
 
 export const homePageLastModified = "2022-04-30";
 
@@ -46,10 +53,14 @@ const HomePage: NextPage<HomePageProps> = ({ posts }) => {
   );
 };
 
-export const getStaticProps: GetStaticProps<HomePageProps> = async ({
-  preview,
-}) => {
-  const posts = await getAllPosts(preview);
+export const getStaticProps: GetStaticProps<
+  HomePageProps,
+  ParsedUrlQuery,
+  PreviewData
+> = async ({ preview, previewData }) => {
+  const posts = await getAllPosts(
+    preview && previewData ? previewData.branch : null
+  );
 
   return { props: { posts } };
 };

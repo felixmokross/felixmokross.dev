@@ -51,3 +51,7 @@ function objectToClasses(obj: object): string[] {
 }
 
 type ClassNameConfig = boolean | undefined | null | string | object;
+
+export type PreviewData = {
+  branch: string;
+};

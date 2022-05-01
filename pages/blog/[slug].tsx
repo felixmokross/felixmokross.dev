@@ -6,6 +6,7 @@ import {
   baseUrl,
   getTitle,
   PostMeta,
+  PreviewData,
 } from "../../src/util";
 import Layout from "../../src/Layout";
 import Head from "next/head";
@@ -104,10 +105,14 @@ export const getStaticPaths: GetStaticPaths<PostPageParams> = async () => {
 
 export const getStaticProps: GetStaticProps<
   PostPageProps,
-  PostPageParams
-> = async ({ params, preview }) => {
+  PostPageParams,
+  PreviewData
+> = async ({ params, preview, previewData }) => {
   if (!params) throw new Error("No params");
-  const post = await getPostBySlug(params.slug, preview);
+  const post = await getPostBySlug(
+    params.slug,
+    preview && previewData ? previewData.branch : null
+  );
 
   return {
     props: {

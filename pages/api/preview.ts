@@ -5,7 +5,13 @@ const handler: NextApiHandler = async (req, res) => {
     return res.status(401).json({ message: "Invalid token" });
   }
 
-  res.setPreviewData({});
+  if (!req.query.branch || typeof req.query.branch !== "string") {
+    return res.status(400).json({ message: "branch query parameter required" });
+  }
+
+  res.setPreviewData({
+    branch: req.query.branch,
+  });
   res.redirect("/");
 };
 
