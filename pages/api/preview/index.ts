@@ -1,5 +1,5 @@
 import { NextApiHandler, NextApiRequest, NextApiResponse } from "next";
-import { basicAuth } from "../../src/util";
+import { basicAuth } from "../../../src/util";
 
 const handler: NextApiHandler = async (req, res) => {
   if (req.query.token !== process.env.PREVIEW_TOKEN) {
@@ -7,10 +7,10 @@ const handler: NextApiHandler = async (req, res) => {
   }
 
   switch (req.method) {
-    case "PUT":
+    case "GET":
       return await enablePreviewMode(req, res);
-    case "DELETE":
-      return await disablePreviewMode(req, res);
+    default:
+      return res.status(405).json({ message: "Method not allowed" });
   }
 };
 
@@ -18,7 +18,7 @@ async function enablePreviewMode(req: NextApiRequest, res: NextApiResponse) {
   const { branch } = req.query;
 
   if (!branch || typeof branch !== "string") {
-    return res.status(400).json({ message: "branch query parameter required" });
+    return res.status(400).json({ message: "Branch query parameter required" });
   }
 
   const response = await fetch(
@@ -40,17 +40,12 @@ async function enablePreviewMode(req: NextApiRequest, res: NextApiResponse) {
 
   if (!branches.some((b) => b.name === branch)) {
     return res.status(404).json({
-      message: `the requested preview branch ${branch} does not exist`,
+      message: `The requested preview branch ${branch} does not exist`,
     });
   }
 
   res.setPreviewData({ branch: branch });
-  res.status(200).end();
-}
-
-async function disablePreviewMode(_: NextApiRequest, res: NextApiResponse) {
-  res.clearPreviewData();
-  res.status(200).end();
+  res.redirect("/");
 }
 
 export default handler;
