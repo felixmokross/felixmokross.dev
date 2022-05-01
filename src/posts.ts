@@ -1,6 +1,6 @@
 import orderBy from "lodash/orderBy";
 import matter from "gray-matter";
-import { PostMeta, postDateFormat } from "./util";
+import { PostMeta, postDateFormat, basicAuth } from "./util";
 import dayjs from "dayjs";
 
 export async function getPostBySlug(
@@ -91,10 +91,6 @@ async function getPostContentFromGitHub(
     throw new Error(`GitHub responded with ${response.status}`);
 
   return await response.text();
-}
-
-function basicAuth(username: string, password: string): string {
-  return `Basic ${Buffer.from(`${username}:${password}`).toString("base64")}`;
 }
 
 export type Post = PostMeta & { content: string };
