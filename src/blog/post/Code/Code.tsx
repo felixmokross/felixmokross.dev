@@ -11,6 +11,7 @@ import hljsShell from "highlight.js/lib/languages/shell";
 import hljsBash from "highlight.js/lib/languages/bash";
 import hljsCss from "highlight.js/lib/languages/css";
 import hljsXml from "highlight.js/lib/languages/xml";
+import hljsMarkdown from "highlight.js/lib/languages/markdown";
 
 hljs.registerLanguage("json", hljsJson);
 hljs.registerLanguage("javascript", hljsJavascript);
@@ -19,6 +20,7 @@ hljs.registerLanguage("shell", hljsShell);
 hljs.registerLanguage("bash", hljsBash);
 hljs.registerLanguage("css", hljsCss);
 hljs.registerLanguage("xml", hljsXml);
+hljs.registerLanguage("markdown", hljsMarkdown);
 
 export type CodeProps = {
   children: string;
@@ -34,7 +36,8 @@ export type Language =
   | "tsx"
   | "shell"
   | "css"
-  | "html";
+  | "html"
+  | "md";
 
 export default function Code({
   children,
