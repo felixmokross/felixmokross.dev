@@ -7,7 +7,7 @@ import { getAllPosts } from "../../src/posts";
 import PostListItem from "../../src/blog/home/PostListItem";
 import Bio from "../../src/blog/home/Bio";
 
-export const homePageLastModified = "2022-01-17";
+export const homePageLastModified = "2022-04-30";
 
 const HomePage: NextPage<HomePageProps> = ({ posts }) => {
   const title = getTitle("Blog");
