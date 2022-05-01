@@ -1,4 +1,4 @@
-import { NextApiHandler } from "next";
+import { NextApiHandler, NextApiRequest, NextApiResponse } from "next";
 import { basicAuth } from "../../src/util";
 
 const handler: NextApiHandler = async (req, res) => {
@@ -6,6 +6,15 @@ const handler: NextApiHandler = async (req, res) => {
     return res.status(401).json({ message: "Invalid token" });
   }
 
+  switch (req.method) {
+    case "PUT":
+      return await enablePreviewMode(req, res);
+    case "DELETE":
+      return await disablePreviewMode(req, res);
+  }
+};
+
+async function enablePreviewMode(req: NextApiRequest, res: NextApiResponse) {
   const { branch } = req.query;
 
   if (!branch || typeof branch !== "string") {
@@ -36,7 +45,12 @@ const handler: NextApiHandler = async (req, res) => {
   }
 
   res.setPreviewData({ branch: branch });
-  res.redirect("/");
-};
+  res.status(200).end();
+}
+
+async function disablePreviewMode(_: NextApiRequest, res: NextApiResponse) {
+  res.clearPreviewData();
+  res.status(200).end();
+}
 
 export default handler;
