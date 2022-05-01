@@ -13,6 +13,7 @@ This is the source code of my personal blog
 - **Content Processing:** [unified](https://unifiedjs.com)
 - **Content Source:** [GitHub](https://github.com)
 - **Hosting:** [Vercel](https://vercel.com/dashboard)
+- **Analytics:** [Plausible](https://plausible.io/)
 
 ## How the Blog Works
 
