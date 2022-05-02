@@ -4,7 +4,7 @@ import { alternateSiteTitle, baseUrl, domain } from "../src/util";
 class MyDocument extends Document {
   render() {
     return (
-      <Html>
+      <Html lang="en">
         <Head>
           <link
             rel="alternate"
