@@ -4,6 +4,7 @@ import rehypeParse from "rehype-parse";
 import { createElement, Fragment } from "react";
 import PostImage from "./PostImage";
 import PostPre from "./PostPre";
+import { PostH2, PostH3, PostH4, PostH5, PostH6 } from "./postHeadings";
 
 export async function markdownToHtml(markdown: string) {
   const { default: remarkParse } = await import("remark-parse");
@@ -51,5 +52,10 @@ const rehypeReactOptions: Options = {
   components: {
     img: PostImage,
     pre: PostPre,
+    h2: PostH2,
+    h3: PostH3,
+    h4: PostH4,
+    h5: PostH5,
+    h6: PostH6,
   },
 };
