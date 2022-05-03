@@ -24,7 +24,7 @@ hljs.registerLanguage("markdown", hljsMarkdown);
 
 export type CodeProps = {
   children: string;
-  language: Language;
+  language?: Language;
   highlightedLines?: string;
   filename?: string;
 };

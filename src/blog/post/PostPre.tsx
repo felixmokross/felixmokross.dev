@@ -9,12 +9,13 @@ export default function PostPre({ children }: PostPreProps) {
   >;
 
   const match = /language-(.+)/.exec(code.props.className || "");
-  if (!match) throw new Error("Language must be specified!");
-  const [language, filename, highlightedLines] = match[1].split(":");
+  const [language, filename, highlightedLines] = match
+    ? match[1].split(":")
+    : [undefined, undefined, undefined];
 
   return (
     <Code
-      language={language as Language}
+      language={language as Language | undefined}
       filename={filename}
       highlightedLines={highlightedLines}
     >

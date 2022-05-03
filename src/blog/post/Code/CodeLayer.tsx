@@ -8,16 +8,20 @@ export default function CodeLayer({
   language,
 }: CodeLayerProps) {
   const html = useMemo(
-    () => hljs.highlight(children, { language }).value,
+    () => (language ? hljs.highlight(children, { language }).value : null),
     [children, language]
   );
 
   return (
     <pre className={cn("px-4", className)}>
-      <code
-        className="block overflow-x-auto text-slate-100"
-        dangerouslySetInnerHTML={{ __html: html }}
-      />
+      {html ? (
+        <code
+          className="block overflow-x-auto text-slate-100"
+          dangerouslySetInnerHTML={{ __html: html }}
+        />
+      ) : (
+        <code className="block overflow-x-auto text-slate-100">{children}</code>
+      )}
     </pre>
   );
 }
@@ -25,5 +29,5 @@ export default function CodeLayer({
 export type CodeLayerProps = {
   className: string;
   children: string;
-  language: string;
+  language?: string;
 };
