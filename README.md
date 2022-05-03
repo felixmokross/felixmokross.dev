@@ -6,13 +6,12 @@ This is the source code of my personal blog
 ## Tech Stack
 
 - **Language:** [TypeScript](https://www.typescriptlang.org)
-- **Server Runtime:** [Node.js](https://nodejs.org/)
-- **Package Manager:** [pnpm](https://pnpm.io)
 - **Framework:** [Next.js](https://nextjs.org), [React](https://reactjs.org)
-- **Styling:** [Tailwind CSS](https://tailwindcss.com)
-- **Content Processing:** [unified](https://unifiedjs.com)
-- **Content Source:** [GitHub](https://github.com)
 - **Hosting:** [Vercel](https://vercel.com/dashboard)
+- **Content Source:** [GitHub](https://github.com)
+- **Content Processing:** [unified](https://unifiedjs.com)
+- **Styling:** [Tailwind CSS](https://tailwindcss.com)
+- **Package Manager:** [pnpm](https://pnpm.io)
 - **Analytics:** [Plausible](https://plausible.io/)
 
 ## How the Blog Works
