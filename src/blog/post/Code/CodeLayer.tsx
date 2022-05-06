@@ -13,14 +13,14 @@ export default function CodeLayer({
   );
 
   return (
-    <pre className={cn("px-4", className)}>
+    <pre className={cn("overflow-x-auto px-4", className)}>
       {html ? (
         <code
-          className="block overflow-x-auto text-slate-100"
+          className="block text-slate-100"
           dangerouslySetInnerHTML={{ __html: html }}
         />
       ) : (
-        <code className="block overflow-x-auto text-slate-100">{children}</code>
+        <code className="block text-slate-100">{children}</code>
       )}
     </pre>
   );
