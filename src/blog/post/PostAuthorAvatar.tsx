@@ -4,7 +4,7 @@ import Link from "next/link";
 import { displayDateFormat, PostMeta } from "../../util";
 import profilePictureCircle from "../../../src/profile_picture_circle.png";
 
-export default function PostMetaDisplay({ post }: PostMetaDisplayProps) {
+export default function PostAuthorAvatar({ post }: PostMetaDisplayProps) {
   return (
     <Link href="/">
       <a className="mt-14 flex items-center">
