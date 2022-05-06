@@ -3,6 +3,7 @@ lockfileVersion: 5.3
 specifiers:
   '@next/bundle-analyzer': ^12.1.0
   '@rvxlab/tailwind-plugin-ios-full-height': ^1.0.0
+  '@tailwindcss/forms': ^0.5.1
   '@tailwindcss/typography': ^0.5.0
   '@types/jest': ^27.4.0
   '@types/lodash': ^4.14.178
@@ -58,6 +59,7 @@ dependencies:
 
 devDependencies:
   '@rvxlab/tailwind-plugin-ios-full-height': 1.1.0_tailwindcss@3.0.24
+  '@tailwindcss/forms': 0.5.1_tailwindcss@3.0.24
   '@tailwindcss/typography': 0.5.2_tailwindcss@3.0.24
   '@types/jest': 27.4.1
   '@types/lodash': 4.14.182
@@ -863,6 +865,15 @@ packages:
     resolution: {integrity: sha512-OAPJUAtgeINhh/TAlUID4QTs53Njm7xzddaVlEs/SXwgtiD1tW22zAB/W1wdqfrpmikgaWQ9Fw6Ws+hsiRm5Vg==}
     dependencies:
       '@sinonjs/commons': 1.8.3
+    dev: true
+
+  /@tailwindcss/forms/0.5.1_tailwindcss@3.0.24:
+    resolution: {integrity: sha512-QSwsFORnC2BAP0lRzQkz1pw+EzIiiPdk4e27vGQjyXkwJPeC7iLIRVndJzf9CJVbcrrIcirb/TfxF3gRTyFEVA==}
+    peerDependencies:
+      tailwindcss: '>=3.0.0 || >= 3.0.0-alpha.1'
+    dependencies:
+      mini-svg-data-uri: 1.4.4
+      tailwindcss: 3.0.24
     dev: true
 
   /@tailwindcss/typography/0.5.2_tailwindcss@3.0.24:
@@ -3929,6 +3940,11 @@ packages:
     resolution: {integrity: sha512-z0yWI+4FDrrweS8Zmt4Ej5HdJmky15+L2e6Wgn3+iK5fWzb6T3fhNFq2+MeTRb064c6Wr4N/wv0DzQTjNzHNGQ==}
     engines: {node: '>=10'}
     dev: false
+
+  /mini-svg-data-uri/1.4.4:
+    resolution: {integrity: sha512-r9deDe9p5FJUPZAk3A59wGH7Ii9YrjjWw0jmw/liSbHl2CHiyXj6FcDXDu2K3TjVAXqiJdaw3xxwlZZr9E6nHg==}
+    hasBin: true
+    dev: true
 
   /minimatch/3.1.2:
     resolution: {integrity: sha512-J7p63hRiAjw1NDEww1W7i37+ByIrOWO5XQQAzZ3VOcL0PNybwpfmV/N05zFAzwQ9USyEcX6t3UO+K5aqBQOIHw==}

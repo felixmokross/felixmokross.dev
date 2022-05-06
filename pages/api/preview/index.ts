@@ -1,5 +1,5 @@
 import { NextApiHandler, NextApiRequest, NextApiResponse } from "next";
-import { getBranchesFromGithub } from "../../../src/github";
+import { getPreviewBranchesFromGithub } from "../../../src/github";
 
 const handler: NextApiHandler = async (req, res) => {
   if (req.query.token !== process.env.PREVIEW_TOKEN) {
@@ -21,7 +21,7 @@ async function enablePreviewMode(req: NextApiRequest, res: NextApiResponse) {
     return res.status(400).json({ message: "Branch query parameter required" });
   }
 
-  const branches = await getBranchesFromGithub();
+  const branches = await getPreviewBranchesFromGithub();
 
   if (!branches.includes(branch)) {
     return res.status(404).json({

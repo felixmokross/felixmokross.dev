@@ -12,10 +12,14 @@ const token = process.env.GITHUB_TOKEN;
 const apiBaseUrl = `https://api.github.com/repos/${username}/${contentRepo}`;
 const rawBaseUrl = `https://raw.githubusercontent.com/${username}/${contentRepo}`;
 
-export async function getBranchesFromGithub() {
+const mainBranch = "main";
+
+export async function getPreviewBranchesFromGithub() {
   const response = await fetchFromGithub(`${apiBaseUrl}/branches`);
 
-  return ((await response.json()) as Branch[]).map((branch) => branch.name);
+  return ((await response.json()) as Branch[])
+    .map((branch) => branch.name)
+    .filter((b) => b !== mainBranch);
 
   type Branch = {
     name: string;
