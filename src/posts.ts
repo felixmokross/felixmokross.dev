@@ -27,20 +27,19 @@ export async function getAllPosts(
 ): Promise<PostMeta[]> {
   const filenames = await getPostSlugsFromGithub(previewBranch);
 
-  const posts = new Array<PostMeta>(filenames.length);
-  for (let i = 0; i < posts.length; i++) {
-    const post = await getPostBySlug(filenames[i], previewBranch);
-
-    posts[i] = {
-      slug: post.slug,
-      title: post.title,
-      kicker: post.kicker,
-      date: post.date,
-      lastModified: post.lastModified,
-      description: post.description,
-      imageUrl: post.imageUrl,
-    };
-  }
+  const posts = (
+    await Promise.all(
+      filenames.map((filename) => getPostBySlug(filename, previewBranch))
+    )
+  ).map((post) => ({
+    slug: post.slug,
+    title: post.title,
+    kicker: post.kicker,
+    date: post.date,
+    lastModified: post.lastModified,
+    description: post.description,
+    imageUrl: post.imageUrl,
+  }));
 
   return orderBy(posts, (p) => p.date, "desc");
 }
