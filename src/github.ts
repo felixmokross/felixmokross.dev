@@ -9,8 +9,9 @@ const username = process.env.GITHUB_USERNAME;
 const contentRepo = process.env.GITHUB_CONTENT_REPO;
 const token = process.env.GITHUB_TOKEN;
 
-const apiBaseUrl = `https://api.github.com/repos/${username}/${contentRepo}`;
-const rawBaseUrl = `https://raw.githubusercontent.com/${username}/${contentRepo}`;
+const apiBaseUrl = `https://api.github.com/repos/${encodeURIComponent(
+  username
+)}/${encodeURIComponent(contentRepo)}`;
 
 const mainBranch = "main";
 
@@ -30,7 +31,7 @@ export async function getPostSlugsFromGithub(previewBranch: string | null) {
   const branchName = previewBranch || "main";
 
   const response = await fetchFromGithub(
-    `${apiBaseUrl}/contents/posts?ref=${branchName}`
+    `${apiBaseUrl}/contents/posts?ref=${encodeURIComponent(branchName)}`
   );
 
   return ((await response.json()) as GithubItem[]).map((item) => item.name);
@@ -47,10 +48,20 @@ export async function getPostContentFromGithub(
   const branchName = previewBranch || "main";
 
   const response = await fetchFromGithub(
-    `${rawBaseUrl}/${branchName}/posts/${slug}/post.md`
+    `${apiBaseUrl}/contents/posts/${encodeURIComponent(
+      slug
+    )}/post.md?ref=${encodeURIComponent(branchName)}`
   );
 
-  return await response.text();
+  const item = (await response.json()) as GithubItem;
+  console.log(`${slug} SHA: ${item.sha}`);
+
+  return Buffer.from(item.content, "base64").toString();
+
+  type GithubItem = {
+    sha: string;
+    content: string;
+  };
 }
 
 async function fetchFromGithub(url: string) {
