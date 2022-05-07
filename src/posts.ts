@@ -2,12 +2,18 @@ import orderBy from "lodash/orderBy";
 import matter from "gray-matter";
 import { PostMeta, postDateFormat } from "./util";
 import dayjs from "dayjs";
-import { getPostContentFromGithub, getPostSlugsFromGithub } from "./github";
+import {
+  getPostContentFromGithub,
+  getPostSlugsFromGithub,
+  logMainBranchCommitFromGithub,
+} from "./github";
 
 export async function getPostBySlug(
   slug: string,
   previewBranch: string | null = null
 ): Promise<Post> {
+  await logMainBranchCommitFromGithub();
+
   const fileContents = await getPostContentFromGithub(slug, previewBranch);
   const { data, content } = matter(fileContents);
   return {

@@ -27,6 +27,26 @@ export async function getPreviewBranchesFromGithub() {
   };
 }
 
+export async function logMainBranchCommitFromGithub() {
+  const response = await fetchFromGithub(`${apiBaseUrl}/branches/main`);
+
+  const { commit } = (await response.json()) as Branch;
+
+  console.log(
+    `main branch commit: ${commit.sha}, ${commit.commit.author.date}, ${commit.commit.message}`
+  );
+
+  type Branch = {
+    commit: {
+      sha: string;
+      commit: {
+        author: { date: string };
+        message: string;
+      };
+    };
+  };
+}
+
 export async function getPostSlugsFromGithub(previewBranch: string | null) {
   const branchName = previewBranch || "main";
 
