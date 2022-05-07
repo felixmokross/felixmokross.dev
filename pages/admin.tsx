@@ -1,4 +1,5 @@
 import { GetServerSideProps } from "next";
+import { useRouter } from "next/router";
 import { ParsedUrlQuery } from "querystring";
 import { useState } from "react";
 import { getPreviewBranchesFromGithub } from "../src/github";
@@ -8,6 +9,7 @@ import { CommonPageProps, getCommonPageProps, PreviewData } from "../src/util";
 export default function AdminPage({ branches, layoutProps }: AdminPageProps) {
   const [branch, setBranch] = useState(branches[0] || "");
   const [token, setToken] = useState("");
+  const router = useRouter();
 
   return (
     <Layout {...layoutProps}>
@@ -15,11 +17,18 @@ export default function AdminPage({ branches, layoutProps }: AdminPageProps) {
         <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
           <form
             className="space-y-6"
-            onSubmit={(e) => {
+            onSubmit={async (e) => {
               e.preventDefault();
-              window.location.href = `/api/preview?token=${encodeURIComponent(
-                token
-              )}&branch=${encodeURIComponent(branch)}`;
+              const response = await fetch("/api/preview", {
+                method: "PUT",
+                headers: { "content-type": "application/json" },
+                body: JSON.stringify({ token, branch }),
+              });
+
+              if (response.status !== 200)
+                throw new Error(`Message: ${(await response.json()).message}`);
+
+              router.push("/");
             }}
           >
             <div>

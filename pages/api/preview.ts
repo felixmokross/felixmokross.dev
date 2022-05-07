@@ -1,21 +1,23 @@
 import { NextApiHandler, NextApiRequest, NextApiResponse } from "next";
-import { getPreviewBranchesFromGithub } from "../../../src/github";
+import { getPreviewBranchesFromGithub } from "../../src/github";
 
 const handler: NextApiHandler = async (req, res) => {
-  if (req.query.token !== process.env.PREVIEW_TOKEN) {
-    return res.status(401).json({ message: "Invalid token" });
-  }
-
   switch (req.method) {
-    case "GET":
+    case "PUT":
       return await enablePreviewMode(req, res);
+    case "DELETE":
+      return await disablePreviewMode(req, res);
     default:
       return res.status(405).json({ message: "Method not allowed" });
   }
 };
 
 async function enablePreviewMode(req: NextApiRequest, res: NextApiResponse) {
-  const { branch } = req.query;
+  const { branch, token } = req.body as { branch: string; token: string };
+
+  if (token !== process.env.PREVIEW_TOKEN) {
+    return res.status(401).json({ message: "Invalid token" });
+  }
 
   if (!branch || typeof branch !== "string") {
     return res.status(400).json({ message: "Branch query parameter required" });
@@ -30,7 +32,12 @@ async function enablePreviewMode(req: NextApiRequest, res: NextApiResponse) {
   }
 
   res.setPreviewData({ branch: branch });
-  res.redirect("/");
+  res.end();
+}
+
+async function disablePreviewMode(_: NextApiRequest, res: NextApiResponse) {
+  res.clearPreviewData();
+  res.end();
 }
 
 export default handler;
