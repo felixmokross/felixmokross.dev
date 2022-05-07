@@ -1,7 +1,10 @@
 # felixmokross.dev
 
 This is the source code of my personal blog
-[felixmokross.dev](https://felixmokross.dev).
+[felixmokross.dev](https://felixmokross.dev). It is built with Next.js and
+Tailwind CSS. See
+[this post](https://www.felixmokross.dev/blog/build-nextjs-blog) for more
+information on the tech stack and how the blog works.
 
 ## Tech Stack
 
