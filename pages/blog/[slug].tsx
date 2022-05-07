@@ -1,7 +1,15 @@
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import { getAllPosts, getPostBySlug } from "../../src/posts";
 import { useMemo } from "react";
-import { baseUrl, getTitle, PostMeta, PreviewData } from "../../src/util";
+import {
+  baseUrl,
+  CommonPageProps,
+  getCommonPageProps,
+  getPreviewBranch,
+  getTitle,
+  PostMeta,
+  PreviewData,
+} from "../../src/util";
 import Layout from "../../src/Layout";
 import Head from "next/head";
 import { htmlToReact, markdownToHtml } from "../../src/blog/post/transform";
@@ -10,13 +18,13 @@ import PostContent from "../../src/blog/post/PostContent";
 import PostFrontMatter from "../../src/blog/post/PostFrontMatter";
 import PostContainer from "../../src/blog/post/PostContainer";
 
-const PostPage: NextPage<PostPageProps> = ({ post, html }) => {
+const PostPage: NextPage<PostPageProps> = ({ post, html, layoutProps }) => {
   const content = useMemo(() => htmlToReact(html), [html]);
 
   const title = getTitle(`${post.title} \u00B7 ${post.kicker}`);
 
   return (
-    <Layout>
+    <Layout {...layoutProps}>
       <Head>
         <title>{title}</title>
         <meta name="description" content={post.description} />
@@ -42,7 +50,7 @@ const PostPage: NextPage<PostPageProps> = ({ post, html }) => {
   );
 };
 
-type PostPageProps = {
+type PostPageProps = CommonPageProps & {
   post: PostMeta;
   html: string;
 };
@@ -67,15 +75,14 @@ export const getStaticProps: GetStaticProps<
   PostPageProps,
   PostPageParams,
   PreviewData
-> = async ({ params, preview, previewData }) => {
-  if (!params) throw new Error("No params");
-  const post = await getPostBySlug(
-    params.slug,
-    preview && previewData ? previewData.branch : null
-  );
+> = async (context) => {
+  if (!context.params) throw new Error("No params");
+  const previewBranch = getPreviewBranch(context);
+  const post = await getPostBySlug(context.params.slug, previewBranch);
 
   return {
     props: {
+      ...getCommonPageProps(context),
       post: {
         slug: post.slug,
         imageUrl: post.imageUrl,

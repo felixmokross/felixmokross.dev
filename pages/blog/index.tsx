@@ -1,7 +1,10 @@
 import type { GetStaticProps, NextPage } from "next";
 import {
   baseUrl,
+  CommonPageProps,
+  getCommonPageProps,
   getImageUrl,
+  getPreviewBranch,
   getTitle,
   PostMeta,
   PreviewData,
@@ -17,12 +20,12 @@ import HomeContainer from "../../src/blog/home/HomeContainer";
 
 export const homePageLastModified = "2022-04-30";
 
-const HomePage: NextPage<HomePageProps> = ({ posts }) => {
+const HomePage: NextPage<HomePageProps> = ({ posts, layoutProps }) => {
   const title = getTitle("Blog");
   const description =
     "Zurich-based software engineer \u00B7 Lead Architect at Zühlke \u00B7 I'm passionate about web development and UX. On this blog I explore working with technologies like React, Next.js, and TypeScript.";
   return (
-    <Layout>
+    <Layout {...layoutProps}>
       <Head>
         <title>{title}</title>
         <meta name="description" content={description} />
@@ -53,16 +56,15 @@ export const getStaticProps: GetStaticProps<
   HomePageProps,
   ParsedUrlQuery,
   PreviewData
-> = async ({ preview, previewData }) => {
-  const posts = await getAllPosts(
-    preview && previewData ? previewData.branch : null
-  );
+> = async (context) => {
+  const previewBranch = getPreviewBranch(context);
+  const posts = await getAllPosts(previewBranch);
 
-  return { props: { posts } };
+  return { props: { ...getCommonPageProps(context), posts } };
 };
 
 export default HomePage;
 
-type HomePageProps = {
+type HomePageProps = CommonPageProps & {
   posts: PostMeta[];
 };

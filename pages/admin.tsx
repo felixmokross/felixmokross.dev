@@ -1,14 +1,16 @@
 import { GetServerSideProps } from "next";
+import { ParsedUrlQuery } from "querystring";
 import { useState } from "react";
 import { getPreviewBranchesFromGithub } from "../src/github";
 import Layout from "../src/Layout";
+import { CommonPageProps, getCommonPageProps, PreviewData } from "../src/util";
 
-export default function AdminPage({ branches }: AdminPageProps) {
+export default function AdminPage({ branches, layoutProps }: AdminPageProps) {
   const [branch, setBranch] = useState(branches[0] || "");
   const [token, setToken] = useState("");
 
   return (
-    <Layout>
+    <Layout {...layoutProps}>
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
         <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
           <form
@@ -79,13 +81,17 @@ export default function AdminPage({ branches }: AdminPageProps) {
   );
 }
 
-export type AdminPageProps = {
+export type AdminPageProps = CommonPageProps & {
   branches: string[];
 };
 
-export const getServerSideProps: GetServerSideProps = async () => {
+export const getServerSideProps: GetServerSideProps<
+  AdminPageProps,
+  ParsedUrlQuery,
+  PreviewData
+> = async (context) => {
   const branches = await getPreviewBranchesFromGithub();
   return {
-    props: { branches },
+    props: { ...getCommonPageProps(context), branches },
   };
 };
