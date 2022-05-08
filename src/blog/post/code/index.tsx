@@ -1,8 +1,4 @@
 import range from "lodash/range";
-import BackgroundLayer from "./BackgroundLayer";
-import CodeLayer from "./CodeLayer";
-import FadeOutLayer from "./FadeOutLayer";
-import FilenameBar from "./FilenameBar";
 import hljs from "highlight.js/lib/core";
 import hljsJson from "highlight.js/lib/languages/json";
 import hljsJavascript from "highlight.js/lib/languages/javascript";
@@ -12,6 +8,9 @@ import hljsBash from "highlight.js/lib/languages/bash";
 import hljsCss from "highlight.js/lib/languages/css";
 import hljsXml from "highlight.js/lib/languages/xml";
 import hljsMarkdown from "highlight.js/lib/languages/markdown";
+import FilenameBar from "./filename-bar";
+import { BackgroundLayer, FadeOutLayer } from "./auxiliary-layers";
+import { CodeLayer } from "./code-layer";
 
 hljs.registerLanguage("json", hljsJson);
 hljs.registerLanguage("javascript", hljsJavascript);
@@ -39,7 +38,7 @@ export type Language =
   | "html"
   | "md";
 
-export default function Code({
+export function Code({
   children,
   language,
   filename,

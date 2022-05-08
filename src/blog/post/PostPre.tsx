@@ -1,5 +1,5 @@
 import { ReactElement } from "react";
-import Code, { Language } from "./Code";
+import { Code, Language } from "./code";
 
 export default function PostPre({ children }: PostPreProps) {
   if (!Array.isArray(children) || !children[0])

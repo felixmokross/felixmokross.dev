@@ -2,11 +2,7 @@ import hljs from "highlight.js/lib/core";
 import { useMemo } from "react";
 import { cn } from "../../../util";
 
-export default function CodeLayer({
-  className,
-  children,
-  language,
-}: CodeLayerProps) {
+export function CodeLayer({ className, children, language }: CodeLayerProps) {
   const html = useMemo(
     () => (language ? hljs.highlight(children, { language }).value : null),
     [children, language]
