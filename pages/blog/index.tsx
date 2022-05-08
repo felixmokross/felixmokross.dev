@@ -12,10 +12,10 @@ import Head from "next/head";
 import { Layout } from "../../src/layout";
 import preview from "../../src/preview.png";
 import { getAllPosts, PostMeta } from "../../src/posts";
-import Bio from "../../src/blog/home/Bio";
 import { ParsedUrlQuery } from "querystring";
-import PostList from "../../src/blog/home/PostList";
-import HomeContainer from "../../src/blog/home/HomeContainer";
+import PostList from "../../src/blog/home/post-list";
+import { HomeContainer } from "../../src/blog/home/home-container";
+import Bio from "../../src/blog/home/bio";
 
 export const homePageLastModified = "2022-04-30";
 
