@@ -50,6 +50,7 @@ pages are:
   - `index.tsx` – Home page
   - `rss.xml.ts` – RSS feed route (outputs XML)
 - `_app.tsx`, `_document.tsx` – Custom App and Document components
+- `admin.tsx`: Admin page for enabling preview mode
 - `sitemap.xml.ts`: Sitemap route (outputs XML)
 
 All other code (components, utilities) is located in `/src`. The file structure
