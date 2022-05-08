@@ -4,7 +4,7 @@ import { alternateSiteTitle, baseUrl, domain } from "../src/util";
 class MyDocument extends Document {
   render() {
     return (
-      <Html lang="en">
+      <Html lang="en" className="scroll-smooth">
         <Head>
           <link
             rel="alternate"

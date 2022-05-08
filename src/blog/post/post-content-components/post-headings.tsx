@@ -1,4 +1,5 @@
 import { LinkIcon } from "../../../icons";
+import toast from "react-hot-toast";
 
 export function PostH2(props: PostHProps) {
   return <PostHeading as="h2" {...props} />;
@@ -28,15 +29,26 @@ function PostHeading({
 }: PostHeadingProps) {
   return (
     <HeadingElement className="group" id={id} {...rest}>
-      {children}{" "}
-      <span className="not-prose">
-        <a
-          className="hidden text-slate-400 hover:text-slate-600 group-hover:inline-block dark:text-slate-600 dark:hover:text-slate-400"
-          href={`#${id}`}
-        >
-          <LinkIcon className="h-5 w-5" />
-        </a>
-      </span>
+      {children}
+      {id && (
+        <>
+          {" "}
+          <span className="not-prose">
+            <a
+              onClick={async () => {
+                location.hash = id;
+                await navigator.clipboard.writeText(location.href);
+                toast.success("Copied to clipboard");
+                return false;
+              }}
+              className="hidden text-slate-400 hover:text-slate-600 group-hover:inline-block dark:text-slate-600 dark:hover:text-slate-400"
+              href={`#${id}`}
+            >
+              <LinkIcon className="h-5 w-5" />
+            </a>
+          </span>
+        </>
+      )}
     </HeadingElement>
   );
 }
