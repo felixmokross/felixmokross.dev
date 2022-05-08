@@ -2,7 +2,7 @@ import dayjs from "dayjs";
 import Image from "next/image";
 import Link from "next/link";
 import { displayDateFormat } from "../../util";
-import profilePictureCircle from "../../../src/profile_picture_circle.png";
+import profilePictureCircle from "../../../src/profile-picture-circle.png";
 import { PostMeta } from "../../posts";
 
 export function PostAuthorAvatar({ post }: PostMetaDisplayProps) {
