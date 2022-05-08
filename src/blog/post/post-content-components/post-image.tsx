@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-export default function PostImage({ src, alt }: PostImageProps) {
+export function PostImage({ src, alt }: PostImageProps) {
   if (!src) throw new Error("No src!");
   if (!alt) throw new Error("No alt!");
   const altParts = alt.split("|");

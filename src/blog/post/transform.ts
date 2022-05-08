@@ -2,9 +2,15 @@ import { unified } from "unified";
 import rehypeReact, { Options } from "rehype-react";
 import rehypeParse from "rehype-parse";
 import { createElement, Fragment } from "react";
-import PostImage from "./PostImage";
-import PostPre from "./PostPre";
-import { PostH2, PostH3, PostH4, PostH5, PostH6 } from "./postHeadings";
+import { PostImage } from "./post-content-components/post-image";
+import { PostPre } from "./post-content-components/post-pre";
+import {
+  PostH2,
+  PostH3,
+  PostH4,
+  PostH5,
+  PostH6,
+} from "./post-content-components/post-headings";
 
 export async function markdownToHtml(markdown: string) {
   const { default: remarkParse } = await import("remark-parse");

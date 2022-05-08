@@ -1,7 +1,7 @@
 import { ReactElement } from "react";
 import { Code, Language } from "./code";
 
-export default function PostPre({ children }: PostPreProps) {
+export function PostPre({ children }: PostPreProps) {
   if (!Array.isArray(children) || !children[0])
     throw new Error("pre is not a valid code block");
   const code = children[0] as ReactElement<

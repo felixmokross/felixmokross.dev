@@ -1,4 +1,4 @@
-import { LinkIcon } from "../../icons";
+import { LinkIcon } from "../../../icons";
 
 export function PostH2(props: PostHProps) {
   return <PostHeading as="h2" {...props} />;

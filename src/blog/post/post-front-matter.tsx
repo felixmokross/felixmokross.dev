@@ -1,7 +1,7 @@
 import { PostMeta } from "../../posts";
-import PostAuthorAvatar from "./PostAuthorAvatar";
+import { PostAuthorAvatar } from "./post-author-avatar";
 
-export default function PostFrontMatter({ post }: PostFrontMatterProps) {
+export function PostFrontMatter({ post }: PostFrontMatterProps) {
   return (
     <div className="mx-auto max-w-prose text-lg">
       <h1 className="mt-8">

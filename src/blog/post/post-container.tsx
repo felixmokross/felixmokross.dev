@@ -1,4 +1,15 @@
-export default function PostBackgroundPattern() {
+import { PropsWithChildren } from "react";
+
+export function PostContainer({ children }: PropsWithChildren<{}>) {
+  return (
+    <main className="relative overflow-hidden bg-white pt-12 pb-16 dark:bg-slate-900">
+      <PostBackgroundPattern />
+      <article className="relative px-4 sm:px-6 lg:px-8">{children}</article>
+    </main>
+  );
+}
+
+function PostBackgroundPattern() {
   return (
     <div className="hidden lg:absolute lg:inset-y-0 lg:block lg:h-full lg:w-full">
       <div

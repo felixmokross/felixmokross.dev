@@ -12,10 +12,10 @@ import {
 import { Layout } from "../../src/layout";
 import Head from "next/head";
 import { htmlToReact, markdownToHtml } from "../../src/blog/post/transform";
-import Header from "../../src/blog/post/Header";
-import PostContent from "../../src/blog/post/PostContent";
-import PostFrontMatter from "../../src/blog/post/PostFrontMatter";
-import PostContainer from "../../src/blog/post/PostContainer";
+import { Header } from "../../src/blog/post/header";
+import { PostContent } from "../../src/blog/post/post-content";
+import { PostFrontMatter } from "../../src/blog/post/post-front-matter";
+import { PostContainer } from "../../src/blog/post/post-container";
 
 const PostPage: NextPage<PostPageProps> = ({ post, html, layoutProps }) => {
   const content = useMemo(() => htmlToReact(html), [html]);

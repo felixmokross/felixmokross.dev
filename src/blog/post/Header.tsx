@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { alternateSiteTitle } from "../../util";
 
-export default function Header() {
+export function Header() {
   return (
     <header className="mx-auto flex max-w-3xl justify-center px-6">
       <nav>

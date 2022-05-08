@@ -5,7 +5,7 @@ import { displayDateFormat } from "../../util";
 import profilePictureCircle from "../../../src/profile_picture_circle.png";
 import { PostMeta } from "../../posts";
 
-export default function PostAuthorAvatar({ post }: PostMetaDisplayProps) {
+export function PostAuthorAvatar({ post }: PostMetaDisplayProps) {
   return (
     <Link href="/">
       <a className="mt-14 flex items-center">
