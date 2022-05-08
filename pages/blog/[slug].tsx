@@ -20,7 +20,7 @@ const PostPage: NextPage<PostPageProps> = ({ post, html, layoutProps }) => {
   return (
     <Layout
       {...layoutProps}
-      head={{
+      pageHeadProps={{
         title: `${post.title} \u00B7 ${post.kicker}`,
         description: post.description,
         path: `/blog/${post.slug}`,

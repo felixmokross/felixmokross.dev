@@ -18,7 +18,7 @@ const HomePage: NextPage<HomePageProps> = ({ posts, layoutProps }) => {
   return (
     <Layout
       {...layoutProps}
-      head={{
+      pageHeadProps={{
         title: "Blog",
         description:
           "Zurich-based software engineer \u00B7 Lead Architect at Zühlke \u00B7 I'm passionate about web development and UX. On this blog I explore working with technologies like React, Next.js, and TypeScript.",

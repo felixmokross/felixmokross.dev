@@ -14,7 +14,7 @@ export default function AdminPage({ branches, layoutProps }: AdminPageProps) {
   return (
     <Layout
       {...layoutProps}
-      head={{
+      pageHeadProps={{
         title: "Admin",
         path: "/admin",
         description: "Blog admin page",
