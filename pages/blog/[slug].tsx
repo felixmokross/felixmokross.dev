@@ -9,7 +9,7 @@ import {
   getTitle,
   PreviewData,
 } from "../../src/util";
-import Layout from "../../src/Layout";
+import { Layout } from "../../src/layout";
 import Head from "next/head";
 import { htmlToReact, markdownToHtml } from "../../src/blog/post/transform";
 import Header from "../../src/blog/post/Header";

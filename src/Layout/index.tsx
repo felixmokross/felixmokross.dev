@@ -1,8 +1,8 @@
 import { PropsWithChildren } from "react";
-import { Footer } from "./Footer";
-import { PreviewBanner } from "./PreviewBanner";
+import { Footer } from "./footer";
+import { PreviewBanner } from "./preview-banner";
 
-export default function Layout({
+export function Layout({
   previewBranch,
   children,
 }: PropsWithChildren<LayoutProps>) {

@@ -9,7 +9,7 @@ import {
   PreviewData,
 } from "../../src/util";
 import Head from "next/head";
-import Layout from "../../src/Layout";
+import { Layout } from "../../src/layout";
 import preview from "../../src/preview.png";
 import { getAllPosts, PostMeta } from "../../src/posts";
 import Bio from "../../src/blog/home/Bio";
