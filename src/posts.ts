@@ -1,12 +1,17 @@
 import orderBy from "lodash/orderBy";
 import matter from "gray-matter";
-import { PostMeta, postDateFormat } from "./util";
 import dayjs from "dayjs";
 import {
   getPostContentFromGithub,
   getPostSlugsFromGithub,
   logMainBranchCommitFromGithub,
 } from "./github";
+
+const postDateFormat = "YYYY-MM-DD";
+
+export async function getPostSlugs() {
+  return await getPostSlugsFromGithub(null);
+}
 
 export async function getPostBySlug(
   slug: string,
@@ -51,3 +56,13 @@ export async function getAllPosts(
 }
 
 export type Post = PostMeta & { content: string };
+
+export type PostMeta = {
+  slug: string;
+  title: string;
+  kicker: string;
+  date: string;
+  lastModified: string;
+  description: string;
+  imageUrl: string;
+};

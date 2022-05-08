@@ -1,4 +1,4 @@
-import { PostMeta } from "../../util";
+import { PostMeta } from "../../posts";
 import PostAuthorAvatar from "./PostAuthorAvatar";
 
 export default function PostFrontMatter({ post }: PostFrontMatterProps) {

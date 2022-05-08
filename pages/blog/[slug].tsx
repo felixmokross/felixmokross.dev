@@ -1,5 +1,5 @@
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
-import { getAllPosts, getPostBySlug } from "../../src/posts";
+import { getPostBySlug, getPostSlugs, PostMeta } from "../../src/posts";
 import { useMemo } from "react";
 import {
   baseUrl,
@@ -7,7 +7,6 @@ import {
   getCommonPageProps,
   getPreviewBranch,
   getTitle,
-  PostMeta,
   PreviewData,
 } from "../../src/util";
 import Layout from "../../src/Layout";
@@ -62,10 +61,10 @@ type PostPageParams = {
 export default PostPage;
 
 export const getStaticPaths: GetStaticPaths<PostPageParams> = async () => {
-  const posts = await getAllPosts();
+  const slugs = await getPostSlugs();
   return {
-    paths: posts.map((post) => ({
-      params: { slug: post.slug },
+    paths: slugs.map((slug) => ({
+      params: { slug },
     })),
     fallback: false,
   };

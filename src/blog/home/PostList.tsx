@@ -1,4 +1,4 @@
-import { PostMeta } from "../../util";
+import { PostMeta } from "../../posts";
 import PostListItem from "./PostListItem";
 
 export default function PostList({ posts }: PostListProps) {

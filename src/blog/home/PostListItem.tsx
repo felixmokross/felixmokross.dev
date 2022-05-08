@@ -1,6 +1,7 @@
 import dayjs from "dayjs";
 import Link from "next/link";
-import { displayDateFormat, PostMeta } from "../../util";
+import { PostMeta } from "../../posts";
+import { displayDateFormat } from "../../util";
 
 export default function PostListItem({ post }: PostListItemProps) {
   return (

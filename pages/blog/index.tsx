@@ -6,13 +6,12 @@ import {
   getImageUrl,
   getPreviewBranch,
   getTitle,
-  PostMeta,
   PreviewData,
 } from "../../src/util";
 import Head from "next/head";
 import Layout from "../../src/Layout";
 import preview from "../../src/preview.png";
-import { getAllPosts } from "../../src/posts";
+import { getAllPosts, PostMeta } from "../../src/posts";
 import Bio from "../../src/blog/home/Bio";
 import { ParsedUrlQuery } from "querystring";
 import PostList from "../../src/blog/home/PostList";

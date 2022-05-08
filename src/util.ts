@@ -2,24 +2,12 @@ import { GetStaticPropsContext } from "next";
 import { StaticImageData } from "next/image";
 import { ParsedUrlQuery } from "querystring";
 
-export type PostMeta = {
-  slug: string;
-  title: string;
-  kicker: string;
-  date: string;
-  lastModified: string;
-  description: string;
-  imageUrl: string;
-};
-
 const siteTitle = "Felix Mokross";
 export const alternateSiteTitle = "felixmokross.dev";
 
 export const domain = "felixmokross.dev";
 export const baseUrl = "https://www.felixmokross.dev";
 export const accentColor = "0EA5E9";
-
-export const postDateFormat = "YYYY-MM-DD";
 
 export const displayDateFormat = "D MMMM YYYY";
 
