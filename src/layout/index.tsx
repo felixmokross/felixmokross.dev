@@ -9,7 +9,7 @@ export function Layout({
   children,
 }: PropsWithChildren<LayoutProps>) {
   return (
-    <div className="relative min-h-screen">
+    <div className="relative">
       <PageHead {...pageHeadProps} />
       {previewBranch && <PreviewBanner branch={previewBranch} />}
       <div className="pb-52 md:pb-36">{children}</div>
