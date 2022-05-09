@@ -43,7 +43,7 @@ function PostHeading({
                 e.preventDefault();
 
                 ref.current.scrollIntoView({ behavior: "smooth" });
-                history.pushState({}, "", `#${id}`);
+                history.replaceState({}, "", `#${id}`);
 
                 await navigator.clipboard.writeText(location.href);
                 toast.success("Link copied to clipboard");
