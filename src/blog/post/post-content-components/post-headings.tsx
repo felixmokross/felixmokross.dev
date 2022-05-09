@@ -1,6 +1,6 @@
 import { LinkIcon } from "../../../icons";
 import toast from "react-hot-toast";
-import { useRef } from "react";
+import { RefObject, useRef } from "react";
 
 export function PostH2(props: PostHProps) {
   return <PostHeading as="h2" {...props} />;
@@ -36,23 +36,7 @@ function PostHeading({
         <>
           {" "}
           <span className="not-prose">
-            <a
-              onClick={async (e) => {
-                if (!ref.current) return;
-
-                e.preventDefault();
-
-                ref.current.scrollIntoView({ behavior: "smooth" });
-                history.replaceState({}, "", `#${id}`);
-
-                await navigator.clipboard.writeText(location.href);
-                toast.success("Link copied to clipboard");
-              }}
-              className="hidden text-slate-400 hover:text-slate-600 group-hover:inline-block dark:text-slate-600 dark:hover:text-slate-400"
-              href={`#${id}`}
-            >
-              <LinkIcon className="h-5 w-5" />
-            </a>
+            <AnchorLink targetId={id} targetRef={ref} />
           </span>
         </>
       )}
@@ -67,4 +51,31 @@ export type PostHProps = React.DetailedHTMLProps<
 
 type PostHeadingProps = PostHProps & {
   as: "h2" | "h3" | "h4" | "h5" | "h6";
+};
+
+function AnchorLink({ targetId, targetRef }: AnchorLinkProps) {
+  return (
+    <a
+      onClick={async (e) => {
+        if (!targetRef.current) return;
+
+        e.preventDefault();
+
+        targetRef.current.scrollIntoView({ behavior: "smooth" });
+        history.replaceState({}, "", `#${targetId}`);
+
+        await navigator.clipboard.writeText(location.href);
+        toast.success("Link copied to clipboard");
+      }}
+      className="invisible inline-block text-slate-400 hover:text-slate-600 group-hover:visible dark:text-slate-600 dark:hover:text-slate-400"
+      href={`#${targetId}`}
+    >
+      <LinkIcon className="h-5 w-5" />
+    </a>
+  );
+}
+
+type AnchorLinkProps = {
+  targetId: string;
+  targetRef: RefObject<Element>;
 };
