@@ -69,6 +69,7 @@ function AnchorLink({ targetId, targetRef }: AnchorLinkProps) {
       }}
       className="invisible inline-block text-slate-400 hover:text-slate-600 group-hover:visible dark:text-slate-600 dark:hover:text-slate-400"
       href={`#${targetId}`}
+      title="Copy link to this section"
     >
       <LinkIcon className="h-5 w-5" />
     </a>
