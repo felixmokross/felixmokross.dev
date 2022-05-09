@@ -23,7 +23,7 @@ export function GoToTopLink() {
 
       lastPosition = newPosition;
     }
-  }, [isVisible]);
+  }, []);
 
   return (
     <Transition
@@ -43,7 +43,7 @@ export function GoToTopLink() {
       title="Go to top"
       className="fixed bottom-10 right-10 inline-block rounded-full bg-slate-900/80 p-2 text-slate-50 shadow-lg hover:bg-slate-900 hover:text-white dark:bg-slate-600/80 dark:hover:bg-slate-600"
     >
-      <DoubleUpChevronIcon className="h-5 w-5" />
+      <DoubleUpChevronIcon className="h-8 w-8 sm:h-5 sm:w-5" />
     </Transition>
   );
 
