@@ -1,5 +1,4 @@
 const defaultTheme = require("tailwindcss/defaultTheme");
-const iOSHeight = require("@rvxlab/tailwind-plugin-ios-full-height");
 const typography = require("@tailwindcss/typography");
 const forms = require("@tailwindcss/forms");
 
@@ -12,5 +11,5 @@ module.exports = {
       },
     },
   },
-  plugins: [iOSHeight, typography, forms],
+  plugins: [typography, forms],
 };
