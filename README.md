@@ -84,4 +84,4 @@ here resembles the pages. This makes it easy to find page-specific code.
 | `pnpm analyze` | Create production build and analyze bundles            |
 | `pnpm start`   | Serve production build                                 |
 | `pnpm lint`    | Run linter                                             |
-| `pnpm format`  | Format all files using [prettier](https://prettier.io) |
+| `pnpm format`  | Format all files using [Prettier](https://prettier.io) |
