@@ -10,6 +10,7 @@
     "format": "pnpm prettier --write ."
   },
   "dependencies": {
+    "@headlessui/react": "^1.6.1",
     "@next/bundle-analyzer": "^12.1.0",
     "dayjs": "^1.10.7",
     "gray-matter": "^4.0.3",

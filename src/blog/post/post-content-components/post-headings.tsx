@@ -1,5 +1,6 @@
 import { LinkIcon } from "../../../icons";
 import toast from "react-hot-toast";
+import { useRef } from "react";
 
 export function PostH2(props: PostHProps) {
   return <PostHeading as="h2" {...props} />;
@@ -27,19 +28,25 @@ function PostHeading({
   id,
   ...rest
 }: PostHeadingProps) {
+  const ref = useRef<HTMLHeadingElement>(null);
   return (
-    <HeadingElement className="group" id={id} {...rest}>
+    <HeadingElement className="group" id={id} ref={ref} {...rest}>
       {children}
       {id && (
         <>
           {" "}
           <span className="not-prose">
             <a
-              onClick={async () => {
-                location.hash = id;
+              onClick={async (e) => {
+                if (!ref.current) return;
+
+                e.preventDefault();
+
+                ref.current.scrollIntoView({ behavior: "smooth" });
+                history.pushState({}, "", `#${id}`);
+
                 await navigator.clipboard.writeText(location.href);
-                toast.success("Copied to clipboard");
-                return false;
+                toast.success("Link copied to clipboard");
               }}
               className="hidden text-slate-400 hover:text-slate-600 group-hover:inline-block dark:text-slate-600 dark:hover:text-slate-400"
               href={`#${id}`}
