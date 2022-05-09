@@ -22,7 +22,10 @@ export function PostFrontMatter({ post }: PostFrontMatterProps) {
           <ShareOnTwitterButton post={post} />
         </div>
       </div>
-      <p className="mt-6 text-xl leading-8 text-slate-500 dark:text-slate-300">
+      <p
+        className="mt-6 text-justify text-xl leading-8 text-slate-500 dark:text-slate-300"
+        style={{ hyphens: "auto", WebkitHyphens: "auto" }}
+      >
         {post.description}
       </p>
     </div>
