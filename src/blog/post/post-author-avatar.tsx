@@ -8,7 +8,7 @@ import { PostMeta } from "../../posts";
 export function PostAuthorAvatar({ post }: PostMetaDisplayProps) {
   return (
     <Link href="/">
-      <a className="mt-14 flex items-center">
+      <a className="flex items-center">
         <Image
           src={profilePictureCircle}
           alt="Profile picture Felix Mokross"
