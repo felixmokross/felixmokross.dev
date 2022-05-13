@@ -1,7 +1,7 @@
 import dayjs from "dayjs";
 import { GetServerSideProps } from "next";
 import { getAllPosts } from "../../posts";
-import preview from "../../src/preview.png";
+import preview from "../../preview.png";
 import { getImageUrl, getPostUrl, getUrl, rssUrl } from "../../urls";
 import { accentColor, alternateSiteTitle } from "../../util";
 
