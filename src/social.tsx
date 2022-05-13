@@ -5,7 +5,7 @@ import {
   RssIcon,
   TwitterIcon,
 } from "./icons";
-import { baseUrl } from "./util";
+import { rssUrl } from "./urls";
 
 const social = [
   {
@@ -30,7 +30,7 @@ const social = [
   },
   {
     name: "RSS",
-    href: `${baseUrl}/blog/rss.xml`,
+    href: rssUrl,
     icon: RssIcon,
   },
 ];

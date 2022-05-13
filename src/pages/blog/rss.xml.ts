@@ -2,12 +2,8 @@ import dayjs from "dayjs";
 import { GetServerSideProps } from "next";
 import { getAllPosts } from "../../posts";
 import preview from "../../src/preview.png";
-import {
-  accentColor,
-  alternateSiteTitle,
-  baseUrl,
-  getImageUrl,
-} from "../../util";
+import { getImageUrl, getPostUrl, getUrl, rssUrl } from "../../urls";
+import { accentColor, alternateSiteTitle } from "../../util";
 
 function SiteMap() {
   // getServerSideProps will do the heavy lifting
@@ -34,15 +30,15 @@ export const getServerSideProps: GetServerSideProps = async ({ res }) => {
      <rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:webfeeds="http://webfeeds.org/rss/1.0" version="2.0">
        <channel>
          <title>${alternateSiteTitle}</title>
-         <link>${baseUrl}/blog</link>
+         <link>${getUrl("/blog")}</link>
          <description>I'm passionate about web development and UX. On this blog I explore working with technologies like React, Next.js, and TypeScript.</description>
          <language>en-us</language>
          <ttl>60</ttl>
          <lastBuildDate>${channelLastChanged}</lastBuildDate>
-         <atom:link href="${baseUrl}/blog/rss.xml" rel="self" type="application/rss+xml" />
+         <atom:link href="${rssUrl}" rel="self" type="application/rss+xml" />
          <webfeeds:cover image="${getImageUrl(preview)}" />
-         <webfeeds:icon>${baseUrl}/favicon_v2.png</webfeeds:icon>
-         <webfeeds:logo>${baseUrl}/favicon_v2.svg</webfeeds:logo>
+         <webfeeds:icon>${getUrl("/favicon_v2.png")}</webfeeds:icon>
+         <webfeeds:logo>${getUrl("/favicon_v2.svg")}</webfeeds:logo>
          <webfeeds:accentColor>${accentColor}</webfeeds:accentColor>
          ${posts
            .map(
@@ -51,8 +47,8 @@ export const getServerSideProps: GetServerSideProps = async ({ res }) => {
              <title>${cdata(`${kicker}: ${title}`)}</title>
              <description>${cdata(description)}</description>
              <pubDate>${dayjs(date).format(rssDateFormat)}</pubDate>
-             <link>${baseUrl}/blog/${slug}</link>
-             <guid>${baseUrl}/blog/${slug}</guid>
+             <link>${getPostUrl(slug)}</link>
+             <guid>${getPostUrl(slug)}</guid>
            </item>`
            )
            .join("")}

@@ -1,6 +1,7 @@
 import dayjs from "dayjs";
 import Link from "next/link";
 import { PostMeta } from "../../posts";
+import { getPostPath } from "../../urls";
 import { displayDateFormat } from "../../util";
 
 export default function PostList({ posts }: PostListProps) {
@@ -19,7 +20,7 @@ export type PostListProps = {
 
 function PostListItem({ post }: PostListItemProps) {
   return (
-    <Link href={`/blog/${post.slug}`}>
+    <Link href={getPostPath(post.slug)}>
       <a className="block border-t-2 border-slate-100 p-6 dark:border-slate-800 dark:bg-slate-800 sm:rounded-xl sm:border sm:p-8 sm:shadow-xl">
         <div className="flex items-baseline justify-between">
           <p className="text-sm font-semibold uppercase tracking-wide text-sky-600 dark:text-sky-500">

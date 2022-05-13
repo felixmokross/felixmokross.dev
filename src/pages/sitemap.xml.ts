@@ -1,7 +1,7 @@
 import dayjs from "dayjs";
 import { GetServerSideProps } from "next";
 import { getAllPosts } from "../posts";
-import { baseUrl } from "../util";
+import { getPostUrl, getUrl } from "../urls";
 import { homePageLastModified } from "./blog";
 
 function SiteMap() {
@@ -23,14 +23,14 @@ export const getServerSideProps: GetServerSideProps = async ({ res }) => {
     return `<?xml version="1.0" encoding="UTF-8"?>
      <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
        <url>
-         <loc>${baseUrl}/blog</loc>
+         <loc>${getUrl("/blog")}</loc>
          <lastmod>${await getHomePageLastModified()}</lastmod>
        </url>
        ${(await getAllPosts())
          .map(({ slug, lastModified }) => {
            return `
          <url>
-             <loc>${baseUrl}/blog/${slug}</loc>
+             <loc>${getPostUrl(slug)}</loc>
              <lastmod>${dayjs(lastModified).format(sitemapDateFormat)}</lastmod>
          </url>
        `;

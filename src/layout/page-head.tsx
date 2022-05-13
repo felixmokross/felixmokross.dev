@@ -1,6 +1,7 @@
-import { baseUrl, getImageUrl, getTitle } from "../util";
+import { getTitle } from "../util";
 import preview from "../../src/preview.png";
 import Head from "next/head";
+import { getImageUrl, getUrl } from "../urls";
 
 export function PageHead({
   title,
@@ -19,7 +20,7 @@ export function PageHead({
       <title>{fullTitle}</title>
       <meta name="description" content={description} />
       <meta property="og:title" content={fullTitle} />
-      <meta property="og:url" content={`${baseUrl}${path}`} />
+      <meta property="og:url" content={`${getUrl(path)}`} />
       <meta property="og:description" content={description} />
       <meta property="og:type" content="website" />
       <meta property="og:image" content={image.url} />

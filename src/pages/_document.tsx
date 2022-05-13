@@ -1,5 +1,6 @@
 import Document, { Html, Head, Main, NextScript } from "next/document";
-import { alternateSiteTitle, baseUrl, domain } from "../util";
+import { rssUrl } from "../urls";
+import { alternateSiteTitle, domain } from "../util";
 
 class MyDocument extends Document {
   render() {
@@ -10,7 +11,7 @@ class MyDocument extends Document {
             rel="alternate"
             type="application/rss+xml"
             title={`RSS Feed for ${alternateSiteTitle}`}
-            href={`${baseUrl}/blog/rss.xml`}
+            href={rssUrl}
           />
           <link rel="icon" type="image/png" href="/favicon_v2.png" />
           <link

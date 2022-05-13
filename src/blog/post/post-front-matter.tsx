@@ -1,8 +1,10 @@
-import toast from "react-hot-toast";
-import { LinkIcon, TwitterIcon } from "../../icons";
 import { PostMeta } from "../../posts";
-import { baseUrl } from "../../util";
 import { PostAuthorAvatar } from "./post-author-avatar";
+import {
+  CopyPostLinkButton,
+  ShareOnLinkedinButton,
+  ShareOnTwitterButton,
+} from "./share-buttons";
 
 export function PostFrontMatter({ post }: PostFrontMatterProps) {
   return (
@@ -20,6 +22,7 @@ export function PostFrontMatter({ post }: PostFrontMatterProps) {
         <div className="flex items-center gap-4">
           <CopyPostLinkButton />
           <ShareOnTwitterButton post={post} />
+          <ShareOnLinkedinButton post={post} />
         </div>
       </div>
       <p
@@ -33,45 +36,5 @@ export function PostFrontMatter({ post }: PostFrontMatterProps) {
 }
 
 export type PostFrontMatterProps = {
-  post: PostMeta;
-};
-
-function CopyPostLinkButton() {
-  return (
-    <a
-      onClick={async (e) => {
-        e.preventDefault();
-
-        history.replaceState({}, "", location.pathname);
-
-        await navigator.clipboard.writeText(location.href);
-        toast.success("Link copied to clipboard");
-      }}
-      className="block text-slate-400 hover:text-slate-600 dark:text-slate-600 dark:hover:text-slate-400"
-      href="#"
-      title="Copy link to post"
-    >
-      <LinkIcon className="h-7 w-7" />
-    </a>
-  );
-}
-
-function ShareOnTwitterButton({ post }: ShareOnTwitterButtonProps) {
-  const postUrl = `${baseUrl}/blog/${post.slug}`;
-  return (
-    <a
-      className="block text-slate-400 hover:text-slate-600 dark:text-slate-600 dark:hover:text-slate-400"
-      href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(
-        postUrl
-      )}`}
-      rel="noreferrer"
-      target="_blank"
-      title="Share on Twitter"
-    >
-      <TwitterIcon className="h-7 w-7" />
-    </a>
-  );
-}
-type ShareOnTwitterButtonProps = {
   post: PostMeta;
 };

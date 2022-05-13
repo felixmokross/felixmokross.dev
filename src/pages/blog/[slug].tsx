@@ -13,6 +13,7 @@ import { Header } from "../../blog/post/header";
 import { PostContent } from "../../blog/post/post-content";
 import { PostFrontMatter } from "../../blog/post/post-front-matter";
 import { PostContainer } from "../../blog/post/post-container";
+import { getPostPath } from "../../urls";
 
 const PostPage: NextPage<PostPageProps> = ({ post, html, layoutProps }) => {
   const content = useMemo(() => htmlToReact(html), [html]);
@@ -23,7 +24,7 @@ const PostPage: NextPage<PostPageProps> = ({ post, html, layoutProps }) => {
       pageHeadProps={{
         title: `${post.title} \u00B7 ${post.kicker}`,
         description: post.description,
-        path: `/blog/${post.slug}`,
+        path: getPostPath(post.slug),
         image: {
           url: post.imageUrl,
           alt: "Blog post preview",
