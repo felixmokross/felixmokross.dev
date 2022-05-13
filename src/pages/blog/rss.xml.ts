@@ -1,13 +1,13 @@
 import dayjs from "dayjs";
 import { GetServerSideProps } from "next";
-import { getAllPosts } from "../../src/posts";
+import { getAllPosts } from "../../posts";
 import preview from "../../src/preview.png";
 import {
   accentColor,
   alternateSiteTitle,
   baseUrl,
   getImageUrl,
-} from "../../src/util";
+} from "../../util";
 
 function SiteMap() {
   // getServerSideProps will do the heavy lifting
@@ -23,7 +23,7 @@ export const getServerSideProps: GetServerSideProps = async ({ res }) => {
   return { props: {} };
 
   async function generateRss() {
-    await import("../../src/dayjs.plugins");
+    await import("../../dayjs.plugins");
     const posts = await getAllPosts();
 
     const channelLastChanged = dayjs

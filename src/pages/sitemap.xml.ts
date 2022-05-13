@@ -1,7 +1,7 @@
 import dayjs from "dayjs";
 import { GetServerSideProps } from "next";
-import { getAllPosts } from "../src/posts";
-import { baseUrl } from "../src/util";
+import { getAllPosts } from "../posts";
+import { baseUrl } from "../util";
 import { homePageLastModified } from "./blog";
 
 function SiteMap() {
@@ -41,7 +41,7 @@ export const getServerSideProps: GetServerSideProps = async ({ res }) => {
   }
 
   async function getHomePageLastModified() {
-    await import("../src/dayjs.plugins");
+    await import("../dayjs.plugins");
     return dayjs
       .max(
         [dayjs(homePageLastModified)].concat(

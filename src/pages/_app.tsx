@@ -3,7 +3,7 @@ import "../styles/highlight.css";
 import type { AppProps } from "next/app";
 import { Toaster, resolveValue } from "react-hot-toast";
 import { Transition } from "@headlessui/react";
-import { CircleCheckIcon } from "../src/icons";
+import { CircleCheckIcon } from "../icons";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (

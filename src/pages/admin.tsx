@@ -2,9 +2,9 @@ import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 import { ParsedUrlQuery } from "querystring";
 import { useState } from "react";
-import { getPreviewBranchesFromGithub } from "../src/github";
-import { Layout } from "../src/layout";
-import { CommonPageProps, getCommonPageProps, PreviewData } from "../src/util";
+import { getPreviewBranchesFromGithub } from "../github";
+import { Layout } from "../layout";
+import { CommonPageProps, getCommonPageProps, PreviewData } from "../util";
 
 export default function AdminPage({ branches, layoutProps }: AdminPageProps) {
   const [branch, setBranch] = useState(branches[0] || "");

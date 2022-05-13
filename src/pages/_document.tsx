@@ -1,5 +1,5 @@
 import Document, { Html, Head, Main, NextScript } from "next/document";
-import { alternateSiteTitle, baseUrl, domain } from "../src/util";
+import { alternateSiteTitle, baseUrl, domain } from "../util";
 
 class MyDocument extends Document {
   render() {
