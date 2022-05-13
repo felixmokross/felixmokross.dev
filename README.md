@@ -41,8 +41,8 @@ content repository in order to generate the static pages.
 
 ## File Structure
 
-In the `/pages` directory the routes and their respective pages are defined. The
-pages are:
+In the `/src/pages` directory the routes and their respective pages are defined.
+The pages are:
 
 - `api/preview.ts` – API route to enable preview mode
 - `blog/`
@@ -53,8 +53,9 @@ pages are:
 - `admin.tsx`: Admin page for enabling preview mode
 - `sitemap.xml.ts`: Sitemap route (outputs XML)
 
-All other code (components, utilities) is located in `/src`. The file structure
-here resembles the pages. This makes it easy to find page-specific code.
+All other code (components, utilities) is located outside of the `pages`
+directory in `/src`. The file structure there resembles the pages. This makes it
+easy to find page-specific code.
 
 ## System Requirements
 
