@@ -35,7 +35,10 @@ function PostListItem({ post }: PostListItemProps) {
         <p className="mt-2 text-xl font-semibold text-slate-900 dark:text-white">
           {post.title}
         </p>
-        <p className="mt-3 text-base text-slate-500 dark:text-slate-300">
+        <p
+          className="mt-3 text-justify text-base text-slate-500 dark:text-slate-300"
+          style={{ hyphens: "auto", WebkitHyphens: "auto" }}
+        >
           {post.description}
         </p>
       </a>
