@@ -9,10 +9,18 @@
 
   .prose code:not(pre *) {
     @apply rounded-sm bg-slate-100 p-1 dark:bg-slate-700;
+    hyphens: none;
+    -webkit-hyphens: none;
   }
 
   .prose code::before,
   .prose code::after {
     content: "";
+  }
+
+  .prose p {
+    @apply text-justify;
+    hyphens: auto;
+    -webkit-hyphens: auto;
   }
 }
