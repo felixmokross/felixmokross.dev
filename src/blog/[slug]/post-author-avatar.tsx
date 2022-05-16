@@ -5,7 +5,7 @@ import { displayDateFormat } from "../../util";
 import profilePictureCircle from "../../../src/profile-picture-circle.png";
 import { PostMeta } from "../../types";
 
-export function PostAuthorAvatar({ post }: PostMetaDisplayProps) {
+export function PostAuthorAvatar({ post }: PostAuthorAvatarProps) {
   return (
     <Link href="/">
       <a className="flex items-center">
@@ -31,6 +31,6 @@ export function PostAuthorAvatar({ post }: PostMetaDisplayProps) {
   );
 }
 
-export type PostMetaDisplayProps = {
+export type PostAuthorAvatarProps = {
   post: PostMeta;
 };
