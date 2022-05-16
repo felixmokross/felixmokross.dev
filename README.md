@@ -57,6 +57,9 @@ All other code (components, utilities) is located outside of the `pages`
 directory in `/src`. The file structure there resembles the pages. This makes it
 easy to find page-specific code.
 
+Files which end in `.server` contain server-only code (cannot be used in
+components).
+
 ## System Requirements
 
 - [Node.js 12.22.0](https://nodejs.org/) or later (as required by Next.js)
