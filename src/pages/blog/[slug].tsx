@@ -8,12 +8,13 @@ import {
   PreviewData,
 } from "../../util";
 import { Layout } from "../../layout";
-import { htmlToReact, markdownToHtml } from "../../blog/post/transform";
+import { markdownToHtml } from "../../blog/post/transform/markdown-to-html";
 import { Header } from "../../blog/post/header";
 import { PostContent } from "../../blog/post/post-content";
 import { PostFrontMatter } from "../../blog/post/post-front-matter";
 import { PostContainer } from "../../blog/post/post-container";
 import { getPostPath } from "../../urls";
+import { htmlToReact } from "../../blog/post/transform/html-to-react";
 
 const PostPage: NextPage<PostPageProps> = ({ post, html, layoutProps }) => {
   const content = useMemo(() => htmlToReact(html), [html]);
