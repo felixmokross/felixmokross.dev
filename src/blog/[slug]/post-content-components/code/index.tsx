@@ -8,7 +8,7 @@ import hljsBash from "highlight.js/lib/languages/bash";
 import hljsCss from "highlight.js/lib/languages/css";
 import hljsXml from "highlight.js/lib/languages/xml";
 import hljsMarkdown from "highlight.js/lib/languages/markdown";
-import FilenameBar from "./filename-bar";
+import { FilenameBar } from "./filename-bar";
 import { BackgroundLayer, FadeOutLayer } from "./auxiliary-layers";
 import { CodeLayer } from "./code-layer";
 

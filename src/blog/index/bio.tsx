@@ -1,8 +1,8 @@
 import Image from "next/image";
-import social from "../../social";
+import { social } from "../../social";
 import profilePictureCircle from "../../../src/profile-picture-circle.png";
 
-export default function Bio() {
+export function Bio() {
   return (
     <div className="flex flex-col items-center px-6 sm:px-0">
       <div className="relative h-40 w-40">

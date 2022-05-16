@@ -4,7 +4,7 @@ import { PostMeta } from "../../types";
 import { getPostPath } from "../../urls";
 import { displayDateFormat } from "../../util";
 
-export default function PostList({ posts }: PostListProps) {
+export function PostList({ posts }: PostListProps) {
   return (
     <div className="mx-auto mt-24 space-y-6 sm:max-w-xl sm:space-y-12">
       {posts.map((post) => (

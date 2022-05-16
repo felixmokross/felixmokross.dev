@@ -7,7 +7,7 @@ import {
 } from "./icons";
 import { rssUrl } from "./urls";
 
-const social = [
+export const social = [
   {
     name: "Twitter",
     href: "https://twitter.com/felixmokross",
@@ -34,5 +34,3 @@ const social = [
     icon: RssIcon,
   },
 ];
-
-export default social;
