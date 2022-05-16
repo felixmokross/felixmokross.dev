@@ -8,9 +8,9 @@ import {
 import { Layout } from "../../layout";
 import { getAllPosts } from "../../posts.server";
 import { ParsedUrlQuery } from "querystring";
-import PostList from "../../blog/home/post-list";
-import { HomeContainer } from "../../blog/home/home-container";
-import Bio from "../../blog/home/bio";
+import PostList from "../../blog/index/post-list";
+import { HomeContainer } from "../../blog/index/home-container";
+import Bio from "../../blog/index/bio";
 import { PostMeta } from "../../types";
 
 export const homePageLastModified = "2022-04-30";

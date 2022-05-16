@@ -8,13 +8,13 @@ import {
   PreviewData,
 } from "../../util.server";
 import { Layout } from "../../layout";
-import { markdownToHtml } from "../../blog/post/transform/markdown-to-html.server";
-import { Header } from "../../blog/post/header";
-import { PostContent } from "../../blog/post/post-content";
-import { PostFrontMatter } from "../../blog/post/post-front-matter";
-import { PostContainer } from "../../blog/post/post-container";
+import { markdownToHtml } from "../../blog/[slug]/transform/markdown-to-html.server";
+import { Header } from "../../blog/[slug]/header";
+import { PostContent } from "../../blog/[slug]/post-content";
+import { PostFrontMatter } from "../../blog/[slug]/post-front-matter";
+import { PostContainer } from "../../blog/[slug]/post-container";
 import { getPostPath } from "../../urls";
-import { htmlToReact } from "../../blog/post/transform/html-to-react";
+import { htmlToReact } from "../../blog/[slug]/transform/html-to-react";
 import { PostMeta } from "../../types";
 
 const PostPage: NextPage<PostPageProps> = ({ post, html, layoutProps }) => {
