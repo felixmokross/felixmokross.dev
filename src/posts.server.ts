@@ -5,7 +5,8 @@ import {
   getPostContentFromGithub,
   getPostSlugsFromGithub,
   logMainBranchCommitFromGithub,
-} from "./github";
+} from "./github.server";
+import { Post, PostMeta } from "./types";
 
 const postDateFormat = "YYYY-MM-DD";
 
@@ -54,15 +55,3 @@ export async function getAllPosts(
 
   return orderBy(posts, (p) => p.date, "desc");
 }
-
-export type Post = PostMeta & { content: string };
-
-export type PostMeta = {
-  slug: string;
-  title: string;
-  kicker: string;
-  date: string;
-  lastModified: string;
-  description: string;
-  imageUrl: string;
-};

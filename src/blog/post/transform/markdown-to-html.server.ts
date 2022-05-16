@@ -1,16 +1,13 @@
 import { unified } from "unified";
+import remarkParse from "remark-parse";
+import remarkRehype from "remark-rehype";
+import rehypeRaw from "rehype-raw";
+import rehypeSlug from "rehype-slug";
+import rehypeSanitize, { defaultSchema } from "rehype-sanitize";
+import rehypeStringify from "rehype-stringify";
+import { rehypeImageSize } from "./rehype-image-size.server";
 
 export async function markdownToHtml(markdown: string) {
-  const { default: remarkParse } = await import("remark-parse");
-  const { default: remarkRehype } = await import("remark-rehype");
-  const { default: rehypeRaw } = await import("rehype-raw");
-  const { default: rehypeSlug } = await import("rehype-slug");
-  const { default: rehypeSanitize, defaultSchema } = await import(
-    "rehype-sanitize"
-  );
-  const { default: rehypeStringify } = await import("rehype-stringify");
-  const { rehypeImageSize } = await import("./rehype-image-size");
-
   return String(
     await unified()
       .use(remarkParse)

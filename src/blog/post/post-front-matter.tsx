@@ -1,4 +1,4 @@
-import { PostMeta } from "../../posts";
+import { PostMeta } from "../../types";
 import { PostAuthorAvatar } from "./post-author-avatar";
 import {
   CopyPostLinkButton,

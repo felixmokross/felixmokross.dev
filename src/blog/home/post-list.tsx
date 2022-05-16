@@ -1,6 +1,6 @@
 import dayjs from "dayjs";
 import Link from "next/link";
-import { PostMeta } from "../../posts";
+import { PostMeta } from "../../types";
 import { getPostPath } from "../../urls";
 import { displayDateFormat } from "../../util";
 

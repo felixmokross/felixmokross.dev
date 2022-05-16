@@ -1,6 +1,6 @@
 import dayjs from "dayjs";
 import { GetServerSideProps } from "next";
-import { getAllPosts } from "../../posts";
+import { getAllPosts } from "../../posts.server";
 import preview from "../../preview.png";
 import { getImageUrl, getPostUrl, getUrl, rssUrl } from "../../urls";
 import { accentColor, alternateSiteTitle } from "../../util";
@@ -19,7 +19,6 @@ export const getServerSideProps: GetServerSideProps = async ({ res }) => {
   return { props: {} };
 
   async function generateRss() {
-    await import("../../dayjs.plugins");
     const posts = await getAllPosts();
 
     const channelLastChanged = dayjs

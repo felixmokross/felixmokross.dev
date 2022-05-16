@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { displayDateFormat } from "../../util";
 import profilePictureCircle from "../../../src/profile-picture-circle.png";
-import { PostMeta } from "../../posts";
+import { PostMeta } from "../../types";
 
 export function PostAuthorAvatar({ post }: PostMetaDisplayProps) {
   return (
