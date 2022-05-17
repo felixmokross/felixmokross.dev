@@ -1,4 +1,4 @@
-import { cn } from "../../../../classnames";
+import { cn } from "../../../../shared/classnames";
 
 export function BackgroundLayer({
   className,

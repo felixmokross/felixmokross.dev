@@ -4,14 +4,14 @@ import {
   getCommonPageProps,
   getPreviewBranch,
   PreviewData,
-} from "../../util.server";
-import { Layout } from "../../layout";
-import { getAllPosts } from "../../posts.server";
+} from "../../shared/util.server";
+import { Layout } from "../../shared/layout";
+import { getAllPosts } from "../../shared/posts.server";
 import { ParsedUrlQuery } from "querystring";
 import { PostList } from "../../blog/index/post-list";
 import { HomeContainer } from "../../blog/index/home-container";
 import { Bio } from "../../blog/index/bio";
-import { PostMeta } from "../../types";
+import { PostMeta } from "../../shared/types";
 
 export const homePageLastModified = "2022-04-30";
 

@@ -1,8 +1,8 @@
 import dayjs from "dayjs";
 import Link from "next/link";
-import { PostMeta } from "../../types";
-import { getPostPath } from "../../urls";
-import { displayDateFormat } from "../../util";
+import { PostMeta } from "../../shared/types";
+import { getPostPath } from "../../shared/urls";
+import { displayDateFormat } from "../../shared/util";
 
 export function PostList({ posts }: PostListProps) {
   return (

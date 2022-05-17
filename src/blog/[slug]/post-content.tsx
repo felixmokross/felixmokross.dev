@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { ReactElement } from "react";
-import { alternateSiteTitle } from "../../util";
+import { alternateSiteTitle } from "../../shared/util";
 
 export function PostContent({ content }: PostContentProps) {
   return (

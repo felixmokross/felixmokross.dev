@@ -1,4 +1,4 @@
-import { social } from "../social";
+import { social } from "../../shared/social";
 
 export function Footer() {
   return (

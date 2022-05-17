@@ -1,6 +1,6 @@
 import Document, { Html, Head, Main, NextScript } from "next/document";
-import { rssUrl } from "../urls";
-import { alternateSiteTitle, domain } from "../util";
+import { rssUrl } from "../shared/urls";
+import { alternateSiteTitle, domain } from "../shared/util";
 import "../dayjs.server";
 
 class MyDocument extends Document {

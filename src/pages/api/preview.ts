@@ -1,5 +1,5 @@
 import { NextApiHandler, NextApiRequest, NextApiResponse } from "next";
-import { getPreviewBranchesFromGithub } from "../../github.server";
+import { getPreviewBranchesFromGithub } from "../../shared/github.server";
 
 const handler: NextApiHandler = async (req, res) => {
   switch (req.method) {

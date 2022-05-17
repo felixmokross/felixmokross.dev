@@ -1,9 +1,9 @@
 import dayjs from "dayjs";
 import { GetServerSideProps } from "next";
-import { getAllPosts } from "../../posts.server";
-import preview from "../../preview.png";
-import { getImageUrl, getPostUrl, getUrl, rssUrl } from "../../urls";
-import { accentColor, alternateSiteTitle } from "../../util";
+import { getAllPosts } from "../../shared/posts.server";
+import preview from "../../shared/preview.png";
+import { getImageUrl, getPostUrl, getUrl, rssUrl } from "../../shared/urls";
+import { accentColor, alternateSiteTitle } from "../../shared/util";
 
 function SiteMap() {
   // getServerSideProps will do the heavy lifting

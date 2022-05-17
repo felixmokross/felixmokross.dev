@@ -1,8 +1,13 @@
 import { AnchorHTMLAttributes, DetailedHTMLProps, ReactElement } from "react";
 import toast from "react-hot-toast";
-import { IconProps, LinkedinIcon, LinkIcon, TwitterIcon } from "../../icons";
-import { PostMeta } from "../../types";
-import { getPostUrl } from "../../urls";
+import {
+  IconProps,
+  LinkedinIcon,
+  LinkIcon,
+  TwitterIcon,
+} from "../../shared/icons";
+import { PostMeta } from "../../shared/types";
+import { getPostUrl } from "../../shared/urls";
 
 export function CopyPostLinkButton() {
   return (

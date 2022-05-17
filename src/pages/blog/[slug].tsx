@@ -1,21 +1,21 @@
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
-import { getPostBySlug, getPostSlugs } from "../../posts.server";
+import { getPostBySlug, getPostSlugs } from "../../shared/posts.server";
 import { useMemo } from "react";
 import {
   CommonPageProps,
   getCommonPageProps,
   getPreviewBranch,
   PreviewData,
-} from "../../util.server";
-import { Layout } from "../../layout";
+} from "../../shared/util.server";
+import { Layout } from "../../shared/layout";
 import { markdownToHtml } from "../../blog/[slug]/transform/markdown-to-html.server";
 import { Header } from "../../blog/[slug]/header";
 import { PostContent } from "../../blog/[slug]/post-content";
 import { PostFrontMatter } from "../../blog/[slug]/post-front-matter";
 import { PostContainer } from "../../blog/[slug]/post-container";
-import { getPostPath } from "../../urls";
+import { getPostPath } from "../../shared/urls";
 import { htmlToReact } from "../../blog/[slug]/transform/html-to-react";
-import { PostMeta } from "../../types";
+import { PostMeta } from "../../shared/types";
 
 const PostPage: NextPage<PostPageProps> = ({ post, html, layoutProps }) => {
   const content = useMemo(() => htmlToReact(html), [html]);
