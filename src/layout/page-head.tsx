@@ -12,6 +12,7 @@ export function PageHead({
     alt: "Preview of Felix Mokross' blog homepage",
   },
   includeCreator = false,
+  canonical,
 }: PageHeadProps) {
   const fullTitle = getTitle(title);
 
@@ -33,6 +34,7 @@ export function PageHead({
       {includeCreator && (
         <meta property="twitter:creator" content="@felixmokross" />
       )}
+      {canonical && <link rel="canonical" href={getUrl(canonical)} />}
     </Head>
   );
 }
@@ -46,4 +48,5 @@ export type PageHeadProps = {
     alt: string;
   };
   includeCreator?: boolean;
+  canonical?: string;
 };

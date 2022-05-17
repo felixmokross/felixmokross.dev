@@ -24,6 +24,7 @@ const HomePage: NextPage<HomePageProps> = ({ posts, layoutProps }) => {
         description:
           "Zurich-based software engineer \u00B7 Lead Architect at Zühlke \u00B7 I'm passionate about web development and UX. On this blog I explore working with technologies like React, Next.js, and TypeScript.",
         path: "/blog",
+        canonical: "/blog",
       }}
     >
       <HomeContainer>

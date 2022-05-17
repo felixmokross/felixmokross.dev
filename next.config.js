@@ -16,7 +16,7 @@ module.exports = withBundleAnalyzer({
       {
         source: "/",
         destination: "/blog",
-        permanent: false,
+        permanent: true,
       },
     ];
   },
