@@ -3,7 +3,7 @@ const typography = require("@tailwindcss/typography");
 const forms = require("@tailwindcss/forms");
 
 module.exports = {
-  content: ["./pages/**/*.{js,ts,jsx,tsx}", "./src/**/*.{js,ts,jsx,tsx}"],
+  content: ["./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
       fontFamily: {
