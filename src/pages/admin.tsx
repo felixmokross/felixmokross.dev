@@ -3,15 +3,15 @@ import { useRouter } from "next/router";
 import { ParsedUrlQuery } from "querystring";
 import { useEffect, useState } from "react";
 import { getBranchesFromGithub } from "../shared/github.server";
-import { Layout } from "../shared/layout";
 import {
   CommonPageProps,
-  getCommonPageProps,
+  getPreviewBranch,
   PreviewData,
 } from "../shared/util.server";
 import { getSession, signOut } from "next-auth/react";
 import { Switch } from "@headlessui/react";
 import { cn } from "../shared/classnames";
+import { Session } from "next-auth";
 
 export default function AdminPage({ branches, layoutProps }: AdminPageProps) {
   const [branch, setBranch] = useState(branches[0]);
@@ -26,105 +26,97 @@ export default function AdminPage({ branches, layoutProps }: AdminPageProps) {
   const router = useRouter();
 
   return (
-    <Layout
-      {...layoutProps}
-      pageHeadProps={{
-        title: "Admin",
-        path: "/admin",
-        description: "Blog admin page",
-      }}
-    >
-      <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-        <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
-          <form
-            className="space-y-6"
-            onSubmit={async (e) => {
-              e.preventDefault();
-              const response = await fetch("/api/preview", {
-                method: "PUT",
-                headers: { "content-type": "application/json" },
-                body: JSON.stringify({ branch }),
-              });
+    <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+      <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+        <form
+          className="space-y-6"
+          onSubmit={async (e) => {
+            e.preventDefault();
+            const response = await fetch("/api/preview", {
+              method: "PUT",
+              headers: { "content-type": "application/json" },
+              body: JSON.stringify({ branch }),
+            });
 
-              if (response.status !== 200)
-                throw new Error(`Message: ${(await response.json()).message}`);
+            if (response.status !== 200)
+              throw new Error(`Message: ${(await response.json()).message}`);
 
-              router.push("/");
-            }}
-          >
-            <div>
-              <label
-                htmlFor="branch"
-                className="block text-sm font-medium text-slate-700"
+            router.push("/");
+          }}
+        >
+          <div>
+            <label
+              htmlFor="branch"
+              className="block text-sm font-medium text-slate-700"
+            >
+              Branch
+            </label>
+
+            <div className="mt-1">
+              <select
+                id="branch"
+                className="block w-full rounded-md border-slate-300 shadow-sm focus:border-sky-500 focus:ring-sky-500 sm:text-sm"
+                onChange={(e) => setBranch(e.currentTarget.value)}
+                value={branch}
               >
-                Branch
-              </label>
-
-              <div className="mt-1">
-                <select
-                  id="branch"
-                  className="block w-full rounded-md border-slate-300 shadow-sm focus:border-sky-500 focus:ring-sky-500 sm:text-sm"
-                  onChange={(e) => setBranch(e.currentTarget.value)}
-                  value={branch}
-                >
-                  {branches.map((branch) => (
-                    <option key={branch} value={branch}>
-                      {branch}
-                    </option>
-                  ))}
-                </select>
-              </div>
+                {branches.map((branch) => (
+                  <option key={branch} value={branch}>
+                    {branch}
+                  </option>
+                ))}
+              </select>
             </div>
+          </div>
 
-            <div>
-              <button
-                type="submit"
-                className="flex w-full justify-center rounded-md border border-transparent bg-sky-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-sky-700 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2"
-              >
-                Preview
-              </button>
-            </div>
-          </form>
-          <button
-            className="mt-4 flex w-full justify-center rounded-md border border-transparent bg-slate-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2"
-            onClick={() => signOut({ callbackUrl: "/" })}
-          >
-            Sign out
-          </button>
+          <div>
+            <button
+              type="submit"
+              className="flex w-full justify-center rounded-md border border-transparent bg-sky-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-sky-700 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2"
+            >
+              Preview
+            </button>
+          </div>
+        </form>
+        <button
+          className="mt-4 flex w-full justify-center rounded-md border border-transparent bg-slate-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2"
+          onClick={() => signOut({ callbackUrl: "/" })}
+        >
+          Sign out
+        </button>
 
-          <Switch
-            checked={excludedFromAnalytics}
-            onChange={() => {
-              if (excludedFromAnalytics) {
-                localStorage.removeItem("plausible_ignore");
-                setExcludedFromAnalytics(false);
-              } else {
-                localStorage.setItem("plausible_ignore", "true");
-                setExcludedFromAnalytics(true);
-              }
-            }}
+        <Switch
+          checked={excludedFromAnalytics}
+          onChange={() => {
+            if (excludedFromAnalytics) {
+              localStorage.removeItem("plausible_ignore");
+              setExcludedFromAnalytics(false);
+            } else {
+              localStorage.setItem("plausible_ignore", "true");
+              setExcludedFromAnalytics(true);
+            }
+          }}
+          className={cn(
+            excludedFromAnalytics ? "bg-sky-600" : "bg-gray-200",
+            "relative mt-4 inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2"
+          )}
+        >
+          <span className="sr-only">Use setting</span>
+          <span
+            aria-hidden="true"
             className={cn(
-              excludedFromAnalytics ? "bg-sky-600" : "bg-gray-200",
-              "relative mt-4 inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2"
+              excludedFromAnalytics ? "translate-x-5" : "translate-x-0",
+              "pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"
             )}
-          >
-            <span className="sr-only">Use setting</span>
-            <span
-              aria-hidden="true"
-              className={cn(
-                excludedFromAnalytics ? "translate-x-5" : "translate-x-0",
-                "pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"
-              )}
-            />
-          </Switch>
-        </div>
+          />
+        </Switch>
       </div>
-    </Layout>
+    </div>
   );
 }
 
 export type AdminPageProps = CommonPageProps & {
   branches: string[];
+  session: Session | null;
 };
 
 export const getServerSideProps: GetServerSideProps<
@@ -153,6 +145,17 @@ export const getServerSideProps: GetServerSideProps<
 
   const branches = await getBranchesFromGithub();
   return {
-    props: { ...getCommonPageProps(context), branches },
+    props: {
+      layoutProps: {
+        pageHeadProps: {
+          title: "Admin",
+          path: "/admin",
+          description: "Blog admin page",
+        },
+        previewBranch: getPreviewBranch(context),
+      },
+      session,
+      branches,
+    },
   };
 };

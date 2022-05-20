@@ -1,7 +1,7 @@
-import { getTitle } from "../../shared/util";
+import { getTitle } from "../shared/util";
 import preview from "../preview.png";
 import Head from "next/head";
-import { getImageUrl, getUrl } from "../../shared/urls";
+import { getImageUrl, getUrl } from "../shared/urls";
 
 export function PageHead({
   title,

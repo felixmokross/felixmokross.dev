@@ -1,11 +1,9 @@
 import type { GetStaticProps, NextPage } from "next";
 import {
   CommonPageProps,
-  getCommonPageProps,
   getPreviewBranch,
   PreviewData,
 } from "../../shared/util.server";
-import { Layout } from "../../shared/layout";
 import { getAllPosts } from "../../shared/posts.server";
 import { ParsedUrlQuery } from "querystring";
 import { PostList } from "../../blog/index/post-list";
@@ -15,23 +13,12 @@ import { PostMeta } from "../../shared/types";
 
 export const homePageLastModified = "2022-04-30";
 
-const HomePage: NextPage<HomePageProps> = ({ posts, layoutProps }) => {
+const HomePage: NextPage<HomePageProps> = ({ posts }) => {
   return (
-    <Layout
-      {...layoutProps}
-      pageHeadProps={{
-        title: "Blog",
-        description:
-          "Zurich-based software engineer \u00B7 Lead Architect at Zühlke \u00B7 I'm passionate about web development and UX. On this blog I explore working with technologies like React, Next.js, and TypeScript.",
-        path: "/blog",
-        canonical: "/blog",
-      }}
-    >
-      <HomeContainer>
-        <Bio />
-        <PostList posts={posts} />
-      </HomeContainer>
-    </Layout>
+    <HomeContainer>
+      <Bio />
+      <PostList posts={posts} />
+    </HomeContainer>
   );
 };
 
@@ -43,7 +30,21 @@ export const getStaticProps: GetStaticProps<
   const previewBranch = getPreviewBranch(context);
   const posts = await getAllPosts(previewBranch);
 
-  return { props: { ...getCommonPageProps(context), posts } };
+  return {
+    props: {
+      layoutProps: {
+        pageHeadProps: {
+          title: "Blog",
+          description:
+            "Zurich-based software engineer \u00B7 Lead Architect at Zühlke \u00B7 I'm passionate about web development and UX. On this blog I explore working with technologies like React, Next.js, and TypeScript.",
+          path: "/blog",
+          canonical: "/blog",
+        },
+        previewBranch: getPreviewBranch(context),
+      },
+      posts,
+    },
+  };
 };
 
 export default HomePage;

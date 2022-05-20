@@ -1,8 +1,8 @@
 import { PropsWithChildren } from "react";
+import { AdminBanner } from "./admin-banner";
 import { Footer } from "./footer";
 import { GoToTopLink } from "./go-to-top-link";
 import { PageHead, PageHeadProps } from "./page-head";
-import { PreviewBanner } from "./preview-banner";
 
 export function Layout({
   previewBranch,
@@ -12,7 +12,7 @@ export function Layout({
   return (
     <div className="relative">
       <PageHead {...pageHeadProps} />
-      {previewBranch && <PreviewBanner branch={previewBranch} />}
+      <AdminBanner previewBranch={previewBranch} />
       <div className="pb-52 md:pb-36">{children}</div>
       <Footer />
       <GoToTopLink />

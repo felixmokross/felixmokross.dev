@@ -1,6 +1,6 @@
 import { Transition } from "@headlessui/react";
 import { useEffect, useState, MouseEvent as ReactMouseEvent } from "react";
-import { DoubleUpChevronIcon } from "../icons";
+import { DoubleUpChevronIcon } from "../shared/icons";
 
 export function GoToTopLink() {
   const [isVisible, setIsVisible] = useState(false);
