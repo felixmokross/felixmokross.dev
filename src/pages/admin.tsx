@@ -9,7 +9,7 @@ import {
   getCommonPageProps,
   PreviewData,
 } from "../shared/util.server";
-import { getSession } from "next-auth/react";
+import { getSession, signOut } from "next-auth/react";
 
 export default function AdminPage({ branches, layoutProps }: AdminPageProps) {
   const [branch, setBranch] = useState(branches[0]);
@@ -75,6 +75,12 @@ export default function AdminPage({ branches, layoutProps }: AdminPageProps) {
               </button>
             </div>
           </form>
+          <button
+            className="mt-4 flex w-full justify-center rounded-md border border-transparent bg-slate-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2"
+            onClick={() => signOut({ callbackUrl: "/" })}
+          >
+            Sign out
+          </button>
         </div>
       </div>
     </Layout>
