@@ -1,11 +1,13 @@
 import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { isAuthorized } from "../shared/util";
 
 export function AdminBanner({ previewBranch }: AdminBannerProps) {
   const session = useSession();
   const router = useRouter();
-  if (session.status !== "authenticated") return null;
+  if (session.status !== "authenticated" || !isAuthorized(session.data))
+    return null;
   return (
     <div className="bg-sky-600">
       <div className="mx-auto max-w-7xl py-3 px-3 sm:px-6 lg:px-8">

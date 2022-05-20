@@ -1,5 +1,5 @@
 import { getTitle } from "../shared/util";
-import preview from "../preview.png";
+import preview from "../shared/preview.png";
 import Head from "next/head";
 import { getImageUrl, getUrl } from "../shared/urls";
 

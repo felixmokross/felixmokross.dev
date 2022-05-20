@@ -12,6 +12,7 @@ import { getSession, signOut } from "next-auth/react";
 import { Switch } from "@headlessui/react";
 import { cn } from "../shared/classnames";
 import { Session } from "next-auth";
+import { isAuthorized } from "../shared/util";
 
 export default function AdminPage({ branches, layoutProps }: AdminPageProps) {
   const [branch, setBranch] = useState(branches[0]);
@@ -138,7 +139,7 @@ export const getServerSideProps: GetServerSideProps<
 
   if (!session.user) throw new Error("No user present in session");
 
-  if (session.login !== process.env.GITHUB_USERNAME) {
+  if (!isAuthorized(session)) {
     // TODO This will return a 404 error. Returning a 403 error would be better, but is not well supported with Next.js, consider to improve
     return { notFound: true };
   }

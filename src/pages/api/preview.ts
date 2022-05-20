@@ -1,6 +1,7 @@
 import { NextApiHandler, NextApiRequest, NextApiResponse } from "next";
 import { getSession } from "next-auth/react";
 import { getBranchesFromGithub } from "../../shared/github.server";
+import { isAuthorized } from "../../shared/util";
 
 const handler: NextApiHandler = async (req, res) => {
   switch (req.method) {
@@ -19,7 +20,7 @@ async function enablePreviewMode(req: NextApiRequest, res: NextApiResponse) {
     return res.status(401).json({ message: "Not authenticated" });
   }
 
-  if (session.login !== process.env.GITHUB_USERNAME) {
+  if (!isAuthorized(session)) {
     return res.status(403).json({
       message: `The user ${session.login} does not have permission to access this resource.`,
     });

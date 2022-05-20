@@ -1,11 +1,11 @@
 if (
-  !process.env.GITHUB_USERNAME ||
+  !process.env.NEXT_PUBLIC_GITHUB_USERNAME ||
   !process.env.GITHUB_CONTENT_REPO ||
   !process.env.GITHUB_TOKEN
 )
   throw new Error("GitHub environment variables are not set!");
 
-const username = process.env.GITHUB_USERNAME;
+const username = process.env.NEXT_PUBLIC_GITHUB_USERNAME;
 const contentRepo = process.env.GITHUB_CONTENT_REPO;
 const token = process.env.GITHUB_TOKEN;
 
