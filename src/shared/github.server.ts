@@ -13,14 +13,10 @@ const apiBaseUrl = `https://api.github.com/repos/${encodeURIComponent(
   username
 )}/${encodeURIComponent(contentRepo)}`;
 
-const mainBranch = "main";
+export async function getBranchesFromGithub() {
+  const response = await fetchFromGithub("/branches");
 
-export async function getPreviewBranchesFromGithub() {
-  const response = await fetchFromGithub(`${apiBaseUrl}/branches`);
-
-  return ((await response.json()) as Branch[])
-    .map((branch) => branch.name)
-    .filter((b) => b !== mainBranch);
+  return ((await response.json()) as Branch[]).map((branch) => branch.name);
 
   type Branch = {
     name: string;
@@ -28,7 +24,7 @@ export async function getPreviewBranchesFromGithub() {
 }
 
 export async function logMainBranchCommitFromGithub() {
-  const response = await fetchFromGithub(`${apiBaseUrl}/branches/main`);
+  const response = await fetchFromGithub("/branches/main");
 
   const { commit } = (await response.json()) as Branch;
 
@@ -51,7 +47,7 @@ export async function getPostSlugsFromGithub(previewBranch: string | null) {
   const branchName = previewBranch || "main";
 
   const response = await fetchFromGithub(
-    `${apiBaseUrl}/contents/posts?ref=${encodeURIComponent(branchName)}`
+    `/contents/posts?ref=${encodeURIComponent(branchName)}`
   );
 
   return ((await response.json()) as GithubItem[]).map((item) => item.name);
@@ -68,7 +64,7 @@ export async function getPostContentFromGithub(
   const branchName = previewBranch || "main";
 
   const response = await fetchFromGithub(
-    `${apiBaseUrl}/contents/posts/${encodeURIComponent(
+    `/contents/posts/${encodeURIComponent(
       slug
     )}/post.md?ref=${encodeURIComponent(branchName)}`
   );
@@ -84,8 +80,8 @@ export async function getPostContentFromGithub(
   };
 }
 
-async function fetchFromGithub(url: string) {
-  const response = await fetch(url, {
+async function fetchFromGithub(path: string) {
+  const response = await fetch(`${apiBaseUrl}${path}`, {
     headers: { Authorization: basicAuth(username, token) },
   });
 
