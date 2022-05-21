@@ -1,13 +1,14 @@
 import { signOut } from "next-auth/react";
+import { LogoutIcon } from "../../shared/icons";
 import { disablePreviewMode } from "./preview-client";
 
 export function SignOutButton({ isPreviewMode }: SignOutButtonProps) {
   return (
     <button
       onClick={handleSignOutClicked}
-      className="flex items-center justify-center rounded-md border border-transparent bg-white px-4 py-2 text-sm font-medium text-sky-600 shadow-sm hover:bg-sky-50"
+      className="text-slate-100 hover:text-white"
     >
-      Sign out
+      <LogoutIcon className="h-5 w-5" />
     </button>
   );
 
