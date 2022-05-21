@@ -1,5 +1,4 @@
 import { Popover } from "@headlessui/react";
-import { useRouter } from "next/router";
 import {
   ButtonHTMLAttributes,
   DetailedHTMLProps,
@@ -41,7 +40,6 @@ export type PreviewModePopoverProps = {
 };
 
 function Menu({ previewBranch }: MenuProps) {
-  const router = useRouter();
   const { data } = useSWR<string[]>(
     "/api/preview",
     async (url) => await (await fetch(url)).json()
@@ -55,7 +53,7 @@ function Menu({ previewBranch }: MenuProps) {
             onClick={async () => {
               await disablePreviewMode();
 
-              router.push("/blog");
+              location.pathname = "/blog";
             }}
           >
             Show published content
@@ -69,7 +67,7 @@ function Menu({ previewBranch }: MenuProps) {
               onClick={async () => {
                 await enablePreviewMode(branch);
 
-                router.push("/blog");
+                location.pathname = "/blog";
               }}
             >
               Preview {branch}
