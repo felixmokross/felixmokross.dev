@@ -57,7 +57,7 @@ function Menu({ previewBranch }: MenuProps) {
             onClick={async () => {
               await disablePreviewMode();
 
-              router.push("/");
+              router.push("/blog");
             }}
           >
             Show published content
@@ -71,7 +71,7 @@ function Menu({ previewBranch }: MenuProps) {
               onClick={async () => {
                 await enablePreviewMode(branch);
 
-                router.push("/");
+                router.push("/blog");
               }}
             >
               Preview {branch}

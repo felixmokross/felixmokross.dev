@@ -15,7 +15,7 @@ export function SignOutButton({ isPreviewMode }: SignOutButtonProps) {
   async function handleSignOutClicked() {
     await disablePreviewMode();
     await signOut({
-      callbackUrl: isPreviewMode ? "/" : undefined,
+      callbackUrl: isPreviewMode ? "/blog" : undefined,
     });
   }
 }
