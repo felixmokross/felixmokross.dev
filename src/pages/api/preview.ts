@@ -5,6 +5,8 @@ import { isAuthorized } from "../../shared/util";
 
 const handler: NextApiHandler = async (req, res) => {
   switch (req.method) {
+    case "GET":
+      return await getBranches(req, res);
     case "PUT":
       return await enablePreviewMode(req, res);
     case "DELETE":
@@ -13,6 +15,22 @@ const handler: NextApiHandler = async (req, res) => {
       return res.status(405).json({ message: "Method not allowed" });
   }
 };
+
+async function getBranches(req: NextApiRequest, res: NextApiResponse) {
+  const session = await getSession({ req });
+  if (!session) {
+    return res.status(401).json({ message: "Not authenticated" });
+  }
+
+  if (!isAuthorized(session)) {
+    return res.status(403).json({
+      message: `The user ${session.login} does not have permission to access this resource.`,
+    });
+  }
+
+  const branches = await getBranchesFromGithub();
+  res.json(branches);
+}
 
 async function enablePreviewMode(req: NextApiRequest, res: NextApiResponse) {
   const session = await getSession({ req });

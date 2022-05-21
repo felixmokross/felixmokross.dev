@@ -1,6 +1,6 @@
 import { Switch } from "@headlessui/react";
 import { useEffect, useState } from "react";
-import { cn } from "../shared/classnames";
+import { cn } from "../../shared/classnames";
 
 export function ExcludeFromAnalyticsSwitch() {
   const [excludedFromAnalytics, setExcludedFromAnalytics] = useState(false);
