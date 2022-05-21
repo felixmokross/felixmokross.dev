@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { cn } from "../../shared/classnames";
 import { CogIcon } from "../../shared/icons";
 
-export function ExcludeFromAnalyticsSwitch() {
+export function ExcludeFromAnalyticsPopover() {
   const [excludedFromAnalytics, setExcludedFromAnalytics] = useState(false);
 
   useEffect(() => {

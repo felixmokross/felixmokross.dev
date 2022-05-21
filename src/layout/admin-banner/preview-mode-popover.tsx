@@ -10,9 +10,7 @@ import { cn } from "../../shared/classnames";
 import { ChevronDownIcon } from "../../shared/icons";
 import { disablePreviewMode, enablePreviewMode } from "./preview-client";
 
-export function PreviewModeDropdown({
-  previewBranch,
-}: PreviewModeDropdownProps) {
+export function PreviewModePopover({ previewBranch }: PreviewModePopoverProps) {
   return (
     <Popover className="relative">
       {({ open }) => (
@@ -38,7 +36,7 @@ export function PreviewModeDropdown({
   );
 }
 
-export type PreviewModeDropdownProps = {
+export type PreviewModePopoverProps = {
   previewBranch: string | null;
 };
 
