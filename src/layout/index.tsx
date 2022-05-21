@@ -10,10 +10,10 @@ export function Layout({
   children,
 }: PropsWithChildren<LayoutProps>) {
   return (
-    <div className="relative">
+    <div className="relative flex min-h-screen flex-col min-h-screen-ios">
       <PageHead {...pageHeadProps} />
       <AdminBanner previewBranch={previewBranch} />
-      <div className="pb-52 md:pb-36">{children}</div>
+      <div className="flex grow flex-col pb-52 md:pb-36">{children}</div>
       <Footer />
       <GoToTopLink />
     </div>

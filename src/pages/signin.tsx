@@ -14,9 +14,9 @@ export default function SiginPage() {
     signIn("github", { callbackUrl: query.callbackUrl || "/" });
   }, [query, isReady]);
   return (
-    <p className="animate-pulse py-20 text-center text-3xl text-slate-500 dark:text-slate-300">
-      Redirecting to GitHub…
-    </p>
+    <div className="flex grow animate-pulse flex-col justify-center py-20 text-center text-3xl text-slate-500 dark:text-slate-300">
+      <div>Redirecting to GitHub…</div>
+    </div>
   );
 }
 
