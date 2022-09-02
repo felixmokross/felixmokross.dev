@@ -3,6 +3,13 @@ import { LogoutIcon } from "../../shared/icons";
 import { disablePreviewMode } from "./preview-client";
 
 export function SignOutButton({ isPreviewMode }: SignOutButtonProps) {
+  async function handleSignOutClicked() {
+    await disablePreviewMode();
+    await signOut({
+      callbackUrl: isPreviewMode ? "/blog" : undefined,
+    });
+  }
+
   return (
     <button
       onClick={handleSignOutClicked}
@@ -11,13 +18,6 @@ export function SignOutButton({ isPreviewMode }: SignOutButtonProps) {
       <LogoutIcon className="h-5 w-5" />
     </button>
   );
-
-  async function handleSignOutClicked() {
-    await disablePreviewMode();
-    await signOut({
-      callbackUrl: isPreviewMode ? "/blog" : undefined,
-    });
-  }
 }
 
 export type SignOutButtonProps = {

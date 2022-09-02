@@ -14,12 +14,7 @@ export function GoToTopLink() {
     function listenToScroll() {
       const newPosition = document.documentElement.scrollTop;
 
-      // only show when scrolling up (but not at top position)
-      if (newPosition > 0 && newPosition < lastPosition) {
-        setIsVisible(true);
-      } else {
-        setIsVisible(false);
-      }
+      setIsVisible(isScrollingUp(lastPosition, newPosition));
 
       lastPosition = newPosition;
     }
@@ -46,13 +41,17 @@ export function GoToTopLink() {
       <DoubleUpChevronIcon className="h-8 w-8 sm:h-5 sm:w-5" />
     </Transition>
   );
+}
 
-  function scrollToTop() {
-    window.scrollTo({
-      behavior: "smooth",
-      top: 0,
-      left: 0,
-    });
-    history.replaceState({}, "", location.pathname);
-  }
+function scrollToTop() {
+  window.scrollTo({
+    behavior: "smooth",
+    top: 0,
+    left: 0,
+  });
+  history.replaceState({}, "", location.pathname);
+}
+
+function isScrollingUp(lastPosition: number, newPosition: number) {
+  return newPosition > 0 && newPosition < lastPosition;
 }
