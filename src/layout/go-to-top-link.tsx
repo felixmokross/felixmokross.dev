@@ -2,21 +2,42 @@ import { Transition } from "@headlessui/react";
 import { useEffect, useState, MouseEvent as ReactMouseEvent } from "react";
 import { DoubleUpChevronIcon } from "../shared/icons";
 
+type ScrollDirection = "up" | "down";
+
+const scrollEventThreshold = 30;
+const disappearDelay = 1000;
+
 export function GoToTopLink() {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     let lastPosition = getCurrentScrollPosition();
+    let lastDirection: ScrollDirection = "down";
+    let eventCount = 0;
 
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
 
     function onScroll() {
       const newPosition = getCurrentScrollPosition();
-
-      setIsVisible(isScrollingUp(lastPosition, newPosition));
-
+      const newDirection = getScrollDirection(lastPosition, newPosition);
       lastPosition = newPosition;
+
+      if (lastDirection !== newDirection) {
+        eventCount = 1;
+        lastDirection = newDirection;
+        return;
+      }
+
+      eventCount++;
+      if (eventCount < scrollEventThreshold) return;
+
+      const isScrollingUp = newDirection === "up";
+
+      setIsVisible(isScrollingUp);
+      if (isScrollingUp && newPosition === 0) {
+        setTimeout(() => setIsVisible(false), disappearDelay);
+      }
     }
   }, []);
 
@@ -52,8 +73,11 @@ function scrollToTop() {
   history.replaceState({}, "", location.pathname);
 }
 
-function isScrollingUp(lastPosition: number, newPosition: number) {
-  return newPosition > 0 && newPosition < lastPosition;
+function getScrollDirection(
+  lastPosition: number,
+  newPosition: number
+): ScrollDirection {
+  return newPosition < lastPosition ? "up" : "down";
 }
 
 function getCurrentScrollPosition() {
