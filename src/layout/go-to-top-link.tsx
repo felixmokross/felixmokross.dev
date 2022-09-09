@@ -6,13 +6,13 @@ export function GoToTopLink() {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    let lastPosition = document.documentElement.scrollTop;
+    let lastPosition = getCurrentScrollPosition();
 
-    window.addEventListener("scroll", listenToScroll);
-    return () => window.removeEventListener("scroll", listenToScroll);
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
 
-    function listenToScroll() {
-      const newPosition = document.documentElement.scrollTop;
+    function onScroll() {
+      const newPosition = getCurrentScrollPosition();
 
       setIsVisible(isScrollingUp(lastPosition, newPosition));
 
@@ -54,4 +54,8 @@ function scrollToTop() {
 
 function isScrollingUp(lastPosition: number, newPosition: number) {
   return newPosition > 0 && newPosition < lastPosition;
+}
+
+function getCurrentScrollPosition() {
+  return document.documentElement.scrollTop;
 }
