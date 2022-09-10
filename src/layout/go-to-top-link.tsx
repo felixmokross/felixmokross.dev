@@ -4,7 +4,7 @@ import { DoubleUpChevronIcon } from "../shared/icons";
 
 type ScrollDirection = "up" | "down";
 
-const scrollDistanceThreshold = 50;
+const scrollDistanceThreshold = 75;
 
 export function GoToTopLink() {
   const [isVisible, setIsVisible] = useState(false);
