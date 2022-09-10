@@ -4,8 +4,7 @@ import { DoubleUpChevronIcon } from "../shared/icons";
 
 type ScrollDirection = "up" | "down";
 
-const scrollEventThreshold = 30;
-const disappearDelay = 1000;
+const scrollDistanceThreshold = 50;
 
 export function GoToTopLink() {
   const [isVisible, setIsVisible] = useState(false);
@@ -62,27 +61,21 @@ function getCurrentScrollPosition() {
 function makeOnScroll(setIsVisible: (isVisible: boolean) => void) {
   let lastPosition = getCurrentScrollPosition();
   let lastDirection: ScrollDirection = "down";
-  let eventCount = 0;
+  let sameDirectionDistance = 0;
 
   return function onScroll() {
     const newPosition = getCurrentScrollPosition();
     const newDirection = getScrollDirection(lastPosition, newPosition);
+
+    if (newDirection !== lastDirection) sameDirectionDistance = 0;
+
+    sameDirectionDistance += Math.abs(newPosition - lastPosition);
+
+    if (sameDirectionDistance > scrollDistanceThreshold) {
+      setIsVisible(newPosition > 0 && newDirection === "up");
+    }
+
     lastPosition = newPosition;
-
-    if (lastDirection !== newDirection) {
-      eventCount = 1;
-      lastDirection = newDirection;
-      return;
-    }
-
-    eventCount++;
-    if (eventCount < scrollEventThreshold) return;
-
-    const isScrollingUp = newDirection === "up";
-
-    setIsVisible(isScrollingUp);
-    if (isScrollingUp && newPosition === 0) {
-      setTimeout(() => setIsVisible(false), disappearDelay);
-    }
+    lastDirection = newDirection;
   };
 }
