@@ -11,34 +11,9 @@ export function GoToTopLink() {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    let lastPosition = getCurrentScrollPosition();
-    let lastDirection: ScrollDirection = "down";
-    let eventCount = 0;
-
+    const onScroll = makeOnScroll(setIsVisible);
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
-
-    function onScroll() {
-      const newPosition = getCurrentScrollPosition();
-      const newDirection = getScrollDirection(lastPosition, newPosition);
-      lastPosition = newPosition;
-
-      if (lastDirection !== newDirection) {
-        eventCount = 1;
-        lastDirection = newDirection;
-        return;
-      }
-
-      eventCount++;
-      if (eventCount < scrollEventThreshold) return;
-
-      const isScrollingUp = newDirection === "up";
-
-      setIsVisible(isScrollingUp);
-      if (isScrollingUp && newPosition === 0) {
-        setTimeout(() => setIsVisible(false), disappearDelay);
-      }
-    }
   }, []);
 
   return (
@@ -82,4 +57,32 @@ function getScrollDirection(
 
 function getCurrentScrollPosition() {
   return document.documentElement.scrollTop;
+}
+
+function makeOnScroll(setIsVisible: (isVisible: boolean) => void) {
+  let lastPosition = getCurrentScrollPosition();
+  let lastDirection: ScrollDirection = "down";
+  let eventCount = 0;
+
+  return function onScroll() {
+    const newPosition = getCurrentScrollPosition();
+    const newDirection = getScrollDirection(lastPosition, newPosition);
+    lastPosition = newPosition;
+
+    if (lastDirection !== newDirection) {
+      eventCount = 1;
+      lastDirection = newDirection;
+      return;
+    }
+
+    eventCount++;
+    if (eventCount < scrollEventThreshold) return;
+
+    const isScrollingUp = newDirection === "up";
+
+    setIsVisible(isScrollingUp);
+    if (isScrollingUp && newPosition === 0) {
+      setTimeout(() => setIsVisible(false), disappearDelay);
+    }
+  };
 }
