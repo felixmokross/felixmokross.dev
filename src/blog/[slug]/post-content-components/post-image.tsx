@@ -11,8 +11,8 @@ export function PostImage({ src, alt, width, height }: PostImageProps) {
       <Image
         src={src}
         alt={altParts[0].trim()}
-        width={width}
-        height={height}
+        width={typeof width === "string" ? parseInt(width) : width}
+        height={typeof height === "string" ? parseInt(height) : height}
         priority={priority}
       />
     </span>
