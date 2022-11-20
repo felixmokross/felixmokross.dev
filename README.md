@@ -62,7 +62,7 @@ components).
 
 ## System Requirements
 
-- [Node.js 12.22.0](https://nodejs.org/) or later (as required by Next.js)
+- [Node.js 14.0.0](https://nodejs.org/) or later (as required by Next.js)
 - [pnpm](https://pnpm.io)
 
 ## Running Locally
