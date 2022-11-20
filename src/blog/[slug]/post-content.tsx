@@ -9,9 +9,7 @@ export function PostContent({ content }: PostContentProps) {
 
       <hr />
       <p className="inline-flex w-full justify-around">
-        <Link href="/blog">
-          <a>&larr; {alternateSiteTitle}</a>
-        </Link>
+        <Link href="/blog">&larr; {alternateSiteTitle}</Link>
       </p>
     </div>
   );

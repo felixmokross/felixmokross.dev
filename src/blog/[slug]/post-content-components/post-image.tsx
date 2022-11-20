@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "next/legacy/image";
 
 export function PostImage({ src, alt, width, height }: PostImageProps) {
   if (!src) throw new Error("No src!");

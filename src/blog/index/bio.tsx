@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "next/legacy/image";
 import { social } from "../../shared/social";
 import profilePictureCircle from "../../shared/profile-picture-circle.png";
 
