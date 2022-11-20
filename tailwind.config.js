@@ -1,4 +1,4 @@
-const defaultTheme = require("tailwindcss/defaultTheme");
+const { fontFamily } = require("tailwindcss/defaultTheme");
 const typography = require("@tailwindcss/typography");
 const forms = require("@tailwindcss/forms");
 const iOSHeight = require("@rvxlab/tailwind-plugin-ios-full-height");
@@ -8,7 +8,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["Inter var", ...defaultTheme.fontFamily.sans],
+        sans: ["var(--font-inter)", ...fontFamily.sans],
       },
     },
   },

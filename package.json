@@ -12,6 +12,7 @@
   "dependencies": {
     "@headlessui/react": "^1.6.1",
     "@next/bundle-analyzer": "^12.1.0",
+    "@next/font": "^13.0.4",
     "dayjs": "^1.10.7",
     "gray-matter": "^4.0.3",
     "hast-util-select": "^5.0.1",

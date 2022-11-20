@@ -41,10 +41,6 @@ class MyDocument extends Document {
             title={`RSS Feed for ${alternateSiteTitle}`}
             href={rssUrl}
           />
-          <link
-            href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=optional"
-            rel="stylesheet"
-          />
           <script
             defer
             data-domain={domain}

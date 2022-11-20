@@ -3,6 +3,7 @@ lockfileVersion: 5.3
 specifiers:
   '@headlessui/react': ^1.6.1
   '@next/bundle-analyzer': ^12.1.0
+  '@next/font': ^13.0.4
   '@rvxlab/tailwind-plugin-ios-full-height': ^1.1.0
   '@tailwindcss/forms': ^0.5.1
   '@tailwindcss/typography': ^0.5.0
@@ -47,6 +48,7 @@ specifiers:
 dependencies:
   '@headlessui/react': 1.6.1_react-dom@18.2.0+react@18.2.0
   '@next/bundle-analyzer': 12.1.5
+  '@next/font': 13.0.4
   dayjs: 1.11.1
   gray-matter: 4.0.3
   hast-util-select: 5.0.1
@@ -741,6 +743,10 @@ packages:
     dependencies:
       glob: 7.1.7
     dev: true
+
+  /@next/font/13.0.4:
+    resolution: {integrity: sha512-csZhVqe870p7XE03WfbDLzjVwdBAWxe6/lWGQosfqY/XN5tsmfDLpj442veicfCiiuF7/ydSnAAJxH8PQVBVWQ==}
+    dev: false
 
   /@next/swc-android-arm-eabi/13.0.4:
     resolution: {integrity: sha512-SD9H+/zuV3L0oHIhsDdFkDqFtg6pIHtqRUPlsrNdOsmWXgMlSzxBmwt2ta4kyrazS62BQu7XRUG++ZyODS7AWg==}
