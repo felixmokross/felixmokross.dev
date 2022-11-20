@@ -1,5 +1,5 @@
 import dayjs from "dayjs";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import Link from "next/link";
 import { displayDateFormat } from "../../shared/util";
 import profilePictureCircle from "../../shared/profile-picture-circle.png";
