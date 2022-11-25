@@ -1,6 +1,8 @@
 import { previewData } from "next/headers";
+import { Header } from "../../../src/blog/[slug]/header";
+import { PostContainer } from "../../../src/blog/[slug]/post-container";
 import { markdownToHtml } from "../../../src/blog/[slug]/transform/markdown-to-html.server";
-import { getPostBySlug, getPostSlugs } from "../../../src/shared/posts.server";
+import { getPostBySlug } from "../../../src/shared/posts.server";
 import { PreviewData } from "../../../src/shared/util.server";
 import { PostPage } from "./post-page";
 
@@ -22,5 +24,12 @@ export default async function Page({ params }: PageProps) {
   const post = await getPostBySlug(params.slug, preview.branch);
   const html = await markdownToHtml(post.content);
 
-  return <PostPage post={post} html={html} />;
+  return (
+    <>
+      <Header />
+      <PostContainer>
+        <PostPage post={post} html={html} />
+      </PostContainer>
+    </>
+  );
 }
