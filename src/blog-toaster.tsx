@@ -1,3 +1,4 @@
+"use client";
 import { Transition } from "@headlessui/react";
 import { resolveValue, Toaster } from "react-hot-toast";
 import { CircleCheckIcon } from "./shared/icons";

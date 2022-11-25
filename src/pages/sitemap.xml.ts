@@ -2,7 +2,7 @@ import dayjs from "dayjs";
 import { GetServerSideProps } from "next";
 import { getAllPosts } from "../shared/posts.server";
 import { getPostUrl, getUrl } from "../shared/urls";
-import { homePageLastModified } from "./blog";
+import { homePageLastModified } from "../../app/blog/head";
 
 function SiteMap() {
   // getServerSideProps will do the heavy lifting
