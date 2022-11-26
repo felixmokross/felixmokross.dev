@@ -60,6 +60,7 @@ export default function RootLayout({ children }: PropsWithChildren<{}>) {
         <div
           className={cn("relative flex min-h-screen flex-col min-h-screen-ios")}
         >
+          {/* TODO check how to integrate this (and if there is any value with preview mode not working yet) */}
           {/* <AdminBanner previewBranch={previewBranch} /> */}
           <div className="flex grow flex-col pb-52 md:pb-36">{children}</div>
           <Footer />
