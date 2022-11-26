@@ -1,9 +1,9 @@
-import { Header } from "../../../src/blog/[slug]/header";
-import { PostContainer } from "../../../src/blog/[slug]/post-container";
-import { PostFrontMatter } from "../../../src/blog/[slug]/post-front-matter";
-import { markdownToHtml } from "../../../src/blog/[slug]/transform/markdown-to-html.server";
+import { Header } from "./header";
+import { PostContainer } from "./post-container";
+import { PostFrontMatter } from "./post-front-matter";
+import { markdownToHtml } from "./transform/markdown-to-html.server";
 import { getPostBySlug, getPostSlugs } from "../../../src/shared/posts.server";
-import { PostContent } from "../../../src/blog/[slug]/post-content";
+import { PostContent } from "./post-content";
 
 export async function generateStaticParams() {
   const slugs = await getPostSlugs();

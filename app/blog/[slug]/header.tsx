@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { alternateSiteTitle } from "../../shared/util";
+import { alternateSiteTitle } from "../../../src/shared/util";
 
 export function Header() {
   return (

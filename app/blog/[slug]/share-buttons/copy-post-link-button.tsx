@@ -1,6 +1,6 @@
 "use client";
 import toast from "react-hot-toast";
-import { LinkIcon } from "../../../shared/icons";
+import { LinkIcon } from "../../../../src/shared/icons";
 import { ShareButton } from "./share-button";
 
 export function CopyPostLinkButton() {

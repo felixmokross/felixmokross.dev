@@ -1,6 +1,6 @@
-import { LinkedinIcon, TwitterIcon } from "../../../shared/icons";
-import { PostMeta } from "../../../shared/types";
-import { getPostUrl } from "../../../shared/urls";
+import { LinkedinIcon, TwitterIcon } from "../../../../src/shared/icons";
+import { PostMeta } from "../../../../src/shared/types";
+import { getPostUrl } from "../../../../src/shared/urls";
 import { ShareButton } from "./share-button";
 
 export function ShareOnTwitterButton({ post }: ShareOnTwitterButtonProps) {

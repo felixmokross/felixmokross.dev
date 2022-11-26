@@ -1,9 +1,9 @@
 import dayjs from "dayjs";
 import Image from "next/image";
 import Link from "next/link";
-import { displayDateFormat } from "../../shared/util";
-import profilePictureCircle from "../../shared/profile-picture-circle.png";
-import { PostMeta } from "../../shared/types";
+import { displayDateFormat } from "../../../src/shared/util";
+import profilePictureCircle from "../../../src/shared/profile-picture-circle.png";
+import { PostMeta } from "../../../src/shared/types";
 
 export function PostAuthorAvatar({ post }: PostAuthorAvatarProps) {
   return (
