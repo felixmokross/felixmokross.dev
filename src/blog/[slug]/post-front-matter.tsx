@@ -1,10 +1,10 @@
 import { PostMeta } from "../../shared/types";
+import { CopyPostLinkButton } from "./share-buttons/copy-post-link-button";
 import { PostAuthorAvatar } from "./post-author-avatar";
 import {
-  CopyPostLinkButton,
   ShareOnLinkedinButton,
   ShareOnTwitterButton,
-} from "./share-buttons";
+} from "./share-buttons/social-share-buttons";
 
 export function PostFrontMatter({ post }: PostFrontMatterProps) {
   return (

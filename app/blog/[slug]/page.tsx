@@ -1,6 +1,7 @@
 import { previewData } from "next/headers";
 import { Header } from "../../../src/blog/[slug]/header";
 import { PostContainer } from "../../../src/blog/[slug]/post-container";
+import { PostFrontMatter } from "../../../src/blog/[slug]/post-front-matter";
 import { markdownToHtml } from "../../../src/blog/[slug]/transform/markdown-to-html.server";
 import { getPostBySlug } from "../../../src/shared/posts.server";
 import { PreviewData } from "../../../src/shared/util.server";
@@ -28,7 +29,8 @@ export default async function Page({ params }: PageProps) {
     <>
       <Header />
       <PostContainer>
-        <PostPage post={post} html={html} />
+        <PostFrontMatter post={post} />
+        <PostPage html={html} />
       </PostContainer>
     </>
   );
