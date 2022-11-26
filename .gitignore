@@ -37,3 +37,6 @@ yarn-error.log*
 *.tsbuildinfo
 
 .env
+
+# these get generated at build time
+public/sitemap.xml
