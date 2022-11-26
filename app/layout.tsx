@@ -8,10 +8,12 @@ import { cn } from "../src/shared/classnames";
 import { Footer } from "../src/layout/footer";
 import { GoToTopLink } from "../src/layout/go-to-top-link";
 import { BlogToaster } from "../src/blog-toaster";
+import { SessionProvider } from "./session-provider";
+import { AdminBanner } from "../src/layout/admin-banner";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
-export default function RootLayout({ children }: PropsWithChildren<{}>) {
+export default async function RootLayout({ children }: PropsWithChildren<{}>) {
   return (
     <html lang="en">
       <head>
@@ -57,16 +59,19 @@ export default function RootLayout({ children }: PropsWithChildren<{}>) {
       <body
         className={`bg-white dark:bg-slate-900 ${inter.variable} font-sans`}
       >
-        <div
-          className={cn("relative flex min-h-screen flex-col min-h-screen-ios")}
-        >
-          {/* TODO check how to integrate this (and if there is any value with preview mode not working yet) */}
-          {/* <AdminBanner previewBranch={previewBranch} /> */}
-          <div className="flex grow flex-col pb-52 md:pb-36">{children}</div>
-          <Footer />
-          <GoToTopLink />
-        </div>
-        <BlogToaster />
+        <SessionProvider>
+          <div
+            className={cn(
+              "relative flex min-h-screen flex-col min-h-screen-ios"
+            )}
+          >
+            <AdminBanner />
+            <div className="flex grow flex-col pb-52 md:pb-36">{children}</div>
+            <Footer />
+            <GoToTopLink />
+          </div>
+          <BlogToaster />
+        </SessionProvider>
       </body>
     </html>
   );

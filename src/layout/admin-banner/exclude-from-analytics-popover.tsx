@@ -1,3 +1,4 @@
+"use client";
 import { Popover, Switch } from "@headlessui/react";
 import { useEffect, useState } from "react";
 import { cn } from "../../shared/classnames";

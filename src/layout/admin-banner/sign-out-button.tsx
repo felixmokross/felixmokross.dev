@@ -1,13 +1,9 @@
 import { signOut } from "next-auth/react";
 import { LogoutIcon } from "../../shared/icons";
-import { disablePreviewMode } from "./preview-client";
 
-export function SignOutButton({ isPreviewMode }: SignOutButtonProps) {
+export function SignOutButton() {
   async function handleSignOutClicked() {
-    await disablePreviewMode();
-    await signOut({
-      callbackUrl: isPreviewMode ? "/blog" : undefined,
-    });
+    await signOut();
   }
 
   return (
