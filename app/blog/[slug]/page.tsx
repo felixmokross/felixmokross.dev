@@ -3,7 +3,7 @@ import { PostContainer } from "../../../src/blog/[slug]/post-container";
 import { PostFrontMatter } from "../../../src/blog/[slug]/post-front-matter";
 import { markdownToHtml } from "../../../src/blog/[slug]/transform/markdown-to-html.server";
 import { getPostBySlug, getPostSlugs } from "../../../src/shared/posts.server";
-import { PostPage } from "./post-page";
+import { PostContent } from "../../../src/blog/[slug]/post-content";
 
 export async function generateStaticParams() {
   const slugs = await getPostSlugs();
@@ -23,7 +23,7 @@ export default async function Page({ params }: PageProps) {
       <Header />
       <PostContainer>
         <PostFrontMatter post={post} />
-        <PostPage html={html} />
+        <PostContent html={html} />
       </PostContainer>
     </>
   );

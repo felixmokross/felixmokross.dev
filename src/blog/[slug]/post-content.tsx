@@ -1,8 +1,15 @@
 import Link from "next/link";
-import { ReactElement } from "react";
+import { useMemo } from "react";
 import { alternateSiteTitle } from "../../shared/util";
+import { htmlToReact } from "./transform/html-to-react";
 
-export function PostContent({ content }: PostContentProps) {
+export type PostContentProps = {
+  html: string;
+};
+
+export function PostContent({ html }: PostContentProps) {
+  const content = useMemo(() => htmlToReact(html), [html]);
+
   return (
     <div className="prose prose-lg prose-slate prose-sky mx-auto mt-6 text-slate-500 dark:prose-invert dark:text-slate-300">
       {content}
@@ -14,7 +21,3 @@ export function PostContent({ content }: PostContentProps) {
     </div>
   );
 }
-
-export type PostContentProps = {
-  content: ReactElement;
-};
