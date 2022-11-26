@@ -1,5 +1,5 @@
 import { signOut } from "next-auth/react";
-import { LogoutIcon } from "../../shared/icons";
+import { LogoutIcon } from "../../common/icons";
 
 export function SignOutButton() {
   async function handleSignOutClicked() {

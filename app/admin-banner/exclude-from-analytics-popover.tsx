@@ -1,8 +1,8 @@
 "use client";
 import { Popover, Switch } from "@headlessui/react";
 import { useEffect, useState } from "react";
-import { cn } from "../../shared/classnames";
-import { CogIcon } from "../../shared/icons";
+import { cn } from "../../common/classnames";
+import { CogIcon } from "../../common/icons";
 
 export function ExcludeFromAnalyticsPopover() {
   const [excludedFromAnalytics, setExcludedFromAnalytics] = useState(false);

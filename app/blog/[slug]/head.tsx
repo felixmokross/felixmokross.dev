@@ -1,8 +1,8 @@
-import { getUrl } from "../../../src/shared/urls";
-import { getTitle } from "../../../src/shared/util";
+import { getUrl } from "../../../common/urls";
+import { getTitle } from "../../../common/util";
 import { PageProps } from "./page";
-import { getPostBySlug } from "../../../src/shared/posts.server";
-import { getPostPath } from "../../../src/shared/urls";
+import { getPostBySlug } from "../../../common/posts.server";
+import { getPostPath } from "../../../common/urls";
 
 export default async function Head({ params }: PageProps) {
   const post = await getPostBySlug(params.slug);

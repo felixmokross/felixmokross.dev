@@ -1,4 +1,4 @@
-import { getAllPosts } from "../../src/shared/posts.server";
+import { getAllPosts } from "../../common/posts.server";
 import { HomeContainer } from "./home-container";
 import { Bio } from "./bio";
 import { PostList } from "./post-list";

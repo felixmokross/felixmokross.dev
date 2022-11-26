@@ -1,5 +1,5 @@
 "use client";
-import { LinkIcon } from "../../../../src/shared/icons";
+import { LinkIcon } from "../../../../common/icons";
 import toast from "react-hot-toast";
 import { RefObject, useRef } from "react";
 

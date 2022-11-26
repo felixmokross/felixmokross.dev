@@ -1,5 +1,5 @@
-import { getUrl } from "../../src/shared/urls";
-import { getTitle } from "../../src/shared/util";
+import { getUrl } from "../../common/urls";
+import { getTitle } from "../../common/util";
 
 const title = getTitle("Blog");
 const description =

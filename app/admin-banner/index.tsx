@@ -1,13 +1,17 @@
 "use client";
 import { useSession } from "next-auth/react";
-import { isAuthorized } from "../../shared/util";
+import { BlogSession } from "../../common/types";
+import { isAuthorized } from "../../common/util";
 import { ExcludeFromAnalyticsPopover } from "./exclude-from-analytics-popover";
 import { SignOutButton } from "./sign-out-button";
 
 export function AdminBanner() {
   const session = useSession();
 
-  if (session.status !== "authenticated" || !isAuthorized(session.data)) {
+  if (
+    session.status !== "authenticated" ||
+    !isAuthorized(session.data as BlogSession)
+  ) {
     return null;
   }
   return (

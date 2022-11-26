@@ -1,9 +1,11 @@
 import dayjs from "dayjs";
 import fs from "fs/promises";
 import homePageLastModified from "../app/blog/last-modified";
-import { getAllPosts } from "../src/shared/posts.server";
-import { getPostUrl, getUrl } from "../src/shared/urls";
-import "../src/dayjs.server";
+import { getAllPosts } from "../common/posts.server";
+import { getPostUrl, getUrl } from "../common/urls";
+import minMax from "dayjs/plugin/minMax";
+
+dayjs.extend(minMax);
 
 const sitemapDateFormat = "YYYY-MM-DD";
 

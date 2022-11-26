@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { useMemo } from "react";
-import { alternateSiteTitle } from "../../../src/shared/util";
+import { alternateSiteTitle } from "../../../common/util";
 import { htmlToReact } from "./transform/html-to-react";
 
 export type PostContentProps = {

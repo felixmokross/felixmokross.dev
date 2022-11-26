@@ -1,15 +1,15 @@
 import { PropsWithChildren } from "react";
-import { rssUrl } from "../src/shared/urls";
-import { alternateSiteTitle, domain } from "../src/shared/util";
-import "../src/styles/globals.css";
-import "../src/styles/highlight.css";
+import { rssUrl } from "../common/urls";
+import { alternateSiteTitle, domain } from "../common/util";
+import "../styles/globals.css";
+import "../styles/highlight.css";
 import { Inter } from "@next/font/google";
-import { cn } from "../src/shared/classnames";
-import { Footer } from "../src/layout/footer";
-import { GoToTopLink } from "../src/layout/go-to-top-link";
-import { BlogToaster } from "../src/blog-toaster";
+import { cn } from "../common/classnames";
+import { Footer } from "./footer";
+import { GoToTopLink } from "./go-to-top-link";
+import { BlogToaster } from "./blog-toaster";
 import { SessionProvider } from "./session-provider";
-import { AdminBanner } from "../src/layout/admin-banner";
+import { AdminBanner } from "./admin-banner";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 

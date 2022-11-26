@@ -1,9 +1,11 @@
 import dayjs from "dayjs";
-import { getAllPosts } from "../src/shared/posts.server";
-import { getPostUrl, getUrl, rssUrl } from "../src/shared/urls";
-import { accentColor, alternateSiteTitle } from "../src/shared/util";
+import { getAllPosts } from "../common/posts.server";
+import { getPostUrl, getUrl, rssUrl } from "../common/urls";
+import { accentColor, alternateSiteTitle } from "../common/util";
 import fs from "fs/promises";
-import "../src/dayjs.server";
+import minMax from "dayjs/plugin/minMax";
+
+dayjs.extend(minMax);
 
 const rssDateFormat = "ddd, DD MMM YYYY HH:mm:ss ZZ";
 

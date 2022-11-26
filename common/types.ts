@@ -1,3 +1,5 @@
+import { Session } from "next-auth";
+
 export type PostMeta = {
   slug: string;
   title: string;
@@ -9,3 +11,7 @@ export type PostMeta = {
 };
 
 export type Post = PostMeta & { content: string };
+
+export type BlogSession = Session & {
+  login: string;
+};

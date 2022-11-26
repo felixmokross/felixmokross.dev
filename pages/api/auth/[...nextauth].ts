@@ -1,5 +1,7 @@
 import NextAuth from "next-auth";
+import { JWT } from "next-auth/jwt";
 import GithubProvider from "next-auth/providers/github";
+import { BlogSession } from "../../../common/types";
 
 export default NextAuth({
   providers: [
@@ -14,13 +16,14 @@ export default NextAuth({
   callbacks: {
     async jwt({ token, profile }) {
       if (profile) {
-        // TODO fix these type errors
+        // @ts-ignore
         token.login = profile.login;
       }
       return token;
     },
     async session({ session, token }) {
-      session.login = token.login;
+      const blogSession = session as BlogSession;
+      blogSession.login = token.login as string;
       return session;
     },
   },
