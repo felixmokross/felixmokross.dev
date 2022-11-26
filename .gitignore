@@ -40,3 +40,4 @@ yarn-error.log*
 
 # these get generated at build time
 public/sitemap.xml
+public/blog/rss.xml

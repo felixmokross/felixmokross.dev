@@ -1,14 +1,13 @@
 import { getTitle } from "../shared/util";
-import preview from "../shared/preview.png";
 import Head from "next/head";
-import { getImageUrl, getUrl } from "../shared/urls";
+import { getUrl } from "../shared/urls";
 
 export function PageHead({
   title,
   description = "",
   path,
   image = {
-    url: getImageUrl(preview),
+    url: "/preview.png",
     alt: "Preview of Felix Mokross' blog homepage",
   },
   includeCreator = false,
