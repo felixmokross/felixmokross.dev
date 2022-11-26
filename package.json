@@ -5,7 +5,7 @@
     "dev": "next dev",
     "generate-sitemap": "ts-node -r dotenv/config ./scripts/generate-sitemap.ts",
     "generate-rss": "ts-node -r dotenv/config ./scripts/generate-rss.ts",
-    "build": "next build && pnpm generate-sitemap",
+    "build": "next build && pnpm generate-sitemap && pnpm generate-rss",
     "analyze": "ANALYZE=true pnpm build",
     "start": "next start",
     "lint": "next lint",
