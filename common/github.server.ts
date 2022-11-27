@@ -1,5 +1,3 @@
-import "server-only";
-
 if (
   !process.env.NEXT_PUBLIC_GITHUB_USERNAME ||
   !process.env.GITHUB_CONTENT_REPO ||
@@ -14,16 +12,6 @@ const token = process.env.GITHUB_TOKEN;
 const apiBaseUrl = `https://api.github.com/repos/${encodeURIComponent(
   username
 )}/${encodeURIComponent(contentRepo)}`;
-
-export async function getBranchesFromGithub() {
-  const response = await fetchFromGithub("/branches");
-
-  return ((await response.json()) as Branch[]).map((branch) => branch.name);
-
-  type Branch = {
-    name: string;
-  };
-}
 
 export async function logMainBranchCommitFromGithub() {
   const response = await fetchFromGithub("/branches/main");
@@ -69,7 +57,6 @@ export async function getPostContentFromGithub(slug: string) {
   );
 
   const item = (await response.json()) as GithubItem;
-  console.log(`${slug} SHA: ${item.sha}`);
 
   return Buffer.from(item.content, "base64").toString();
 

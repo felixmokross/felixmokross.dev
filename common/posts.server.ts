@@ -1,4 +1,3 @@
-import "server-only";
 import orderBy from "lodash/orderBy";
 import matter from "gray-matter";
 import dayjs from "dayjs";
@@ -16,8 +15,6 @@ export async function getPostSlugs() {
 }
 
 export async function getPostBySlug(slug: string): Promise<Post> {
-  await logMainBranchCommitFromGithub();
-
   const fileContents = await getPostContentFromGithub(slug);
   const { data, content } = matter(fileContents);
   return {
@@ -33,6 +30,8 @@ export async function getPostBySlug(slug: string): Promise<Post> {
 }
 
 export async function getAllPosts(): Promise<PostMeta[]> {
+  await logMainBranchCommitFromGithub();
+
   const filenames = await getPostSlugsFromGithub();
 
   const posts = (

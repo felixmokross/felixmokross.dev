@@ -18,13 +18,14 @@ async function generateSitemap() {
 }
 
 async function getSitemap() {
+  const posts = await getAllPosts();
   return `<?xml version="1.0" encoding="UTF-8"?>
      <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
        <url>
          <loc>${getUrl("/blog")}</loc>
          <lastmod>${await getHomePageLastModified()}</lastmod>
        </url>
-       ${(await getAllPosts())
+       ${posts
          .map(({ slug, lastModified }) => {
            return `
          <url>
@@ -36,14 +37,14 @@ async function getSitemap() {
          .join("")}
      </urlset>
    `;
-}
 
-async function getHomePageLastModified() {
-  return dayjs
-    .max(
-      [dayjs(homePageLastModified)].concat(
-        (await getAllPosts()).map((p) => dayjs(p.lastModified))
+  async function getHomePageLastModified() {
+    return dayjs
+      .max(
+        [dayjs(homePageLastModified)].concat(
+          posts.map((p) => dayjs(p.lastModified))
+        )
       )
-    )
-    .format(sitemapDateFormat);
+      .format(sitemapDateFormat);
+  }
 }
