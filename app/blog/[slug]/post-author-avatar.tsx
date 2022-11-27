@@ -7,7 +7,7 @@ import { PostMeta } from "../../../common/types";
 
 export function PostAuthorAvatar({ post }: PostAuthorAvatarProps) {
   return (
-    <Link href="/" className="flex items-center">
+    <Link href="/blog" className="flex items-center">
       <Image
         src={profilePictureCircle}
         alt="Profile picture Felix Mokross"
