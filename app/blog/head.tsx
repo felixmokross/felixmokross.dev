@@ -14,7 +14,7 @@ export default function Head() {
       <meta property="og:url" content={getUrl("/blog")} />
       <meta property="og:description" content={description} />
       <meta property="og:type" content="website" />
-      <meta property="og:image" content="/preview.png" />
+      <meta property="og:image" content={getUrl("/preview.png")} />
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="600" />
       <meta
