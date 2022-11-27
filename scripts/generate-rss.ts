@@ -1,6 +1,6 @@
 import dayjs from "dayjs";
 import { getAllPosts } from "../common/posts.server";
-import { getPostUrl, getUrl, rssUrl } from "../common/urls";
+import { getPostUrl, getUrl, rssUrl } from "../common/urls.server";
 import { accentColor, alternateSiteTitle } from "../common/util";
 import fs from "fs/promises";
 import minMax from "dayjs/plugin/minMax";

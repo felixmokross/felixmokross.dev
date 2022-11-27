@@ -1,7 +1,7 @@
 import dayjs from "dayjs";
 import Link from "next/link";
 import { PostMeta } from "../../common/types";
-import { getPostPath } from "../../common/urls";
+import { getPostPath } from "../../common/urls.server";
 import { displayDateFormat } from "../../common/util";
 
 export function PostList({ posts }: PostListProps) {

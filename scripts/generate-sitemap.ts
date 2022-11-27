@@ -2,7 +2,7 @@ import dayjs from "dayjs";
 import fs from "fs/promises";
 import homePageLastModified from "../app/blog/last-modified";
 import { getAllPosts } from "../common/posts.server";
-import { getPostUrl, getUrl } from "../common/urls";
+import { getPostUrl, getUrl } from "../common/urls.server";
 import minMax from "dayjs/plugin/minMax";
 
 dayjs.extend(minMax);

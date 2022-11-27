@@ -1,5 +1,5 @@
 import { PropsWithChildren } from "react";
-import { rssUrl } from "../common/urls";
+import { rssUrl } from "../common/urls.server";
 import { alternateSiteTitle, domain } from "../common/util";
 import "../styles/globals.css";
 import "../styles/highlight.css";

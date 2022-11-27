@@ -5,7 +5,7 @@ import {
   RssIcon,
   TwitterIcon,
 } from "./icons";
-import { rssUrl } from "./urls";
+import { rssUrl } from "./urls.server";
 
 export const social = [
   {

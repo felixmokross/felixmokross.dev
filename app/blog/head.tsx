@@ -1,4 +1,4 @@
-import { getUrl } from "../../common/urls";
+import { getUrl } from "../../common/urls.server";
 import { getTitle } from "../../common/util";
 
 const title = getTitle("Blog");

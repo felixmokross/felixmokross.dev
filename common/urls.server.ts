@@ -1,4 +1,6 @@
-export const baseUrl = "https://www.felixmokross.dev";
+export const baseUrl = process.env.BASE_URL;
+if (!baseUrl) throw new Error("BASE_URL is not defined");
+
 export const rssUrl = getUrl("/blog/rss.xml");
 
 export function getPostPath(slug: string): string {
