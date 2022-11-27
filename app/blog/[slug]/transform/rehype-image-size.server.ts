@@ -1,3 +1,4 @@
+import "server-only";
 import { selectAll } from "hast-util-select";
 import { Plugin } from "unified";
 import type { Root } from "hast";

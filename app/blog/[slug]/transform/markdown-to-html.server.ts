@@ -1,3 +1,4 @@
+import "server-only";
 import { unified } from "unified";
 import remarkParse from "remark-parse";
 import remarkRehype from "remark-rehype";

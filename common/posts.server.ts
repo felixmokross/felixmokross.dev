@@ -1,3 +1,4 @@
+import "server-only";
 import orderBy from "lodash/orderBy";
 import matter from "gray-matter";
 import dayjs from "dayjs";

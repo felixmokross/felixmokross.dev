@@ -1,3 +1,5 @@
+import "server-only";
+
 if (
   !process.env.NEXT_PUBLIC_GITHUB_USERNAME ||
   !process.env.GITHUB_CONTENT_REPO ||
