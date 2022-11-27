@@ -11,16 +11,13 @@ import { Post, PostMeta } from "./types";
 const postDateFormat = "YYYY-MM-DD";
 
 export async function getPostSlugs() {
-  return await getPostSlugsFromGithub(null);
+  return await getPostSlugsFromGithub();
 }
 
-export async function getPostBySlug(
-  slug: string,
-  previewBranch: string | null = null
-): Promise<Post> {
+export async function getPostBySlug(slug: string): Promise<Post> {
   await logMainBranchCommitFromGithub();
 
-  const fileContents = await getPostContentFromGithub(slug, previewBranch);
+  const fileContents = await getPostContentFromGithub(slug);
   const { data, content } = matter(fileContents);
   return {
     slug,
@@ -34,15 +31,11 @@ export async function getPostBySlug(
   };
 }
 
-export async function getAllPosts(
-  previewBranch: string | null = null
-): Promise<PostMeta[]> {
-  const filenames = await getPostSlugsFromGithub(previewBranch);
+export async function getAllPosts(): Promise<PostMeta[]> {
+  const filenames = await getPostSlugsFromGithub();
 
   const posts = (
-    await Promise.all(
-      filenames.map((filename) => getPostBySlug(filename, previewBranch))
-    )
+    await Promise.all(filenames.map((filename) => getPostBySlug(filename)))
   ).map((post) => ({
     slug: post.slug,
     title: post.title,

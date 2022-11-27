@@ -8,8 +8,6 @@ import { cn } from "../common/classnames";
 import { Footer } from "./footer";
 import { GoToTopLink } from "./go-to-top-link";
 import { BlogToaster } from "./blog-toaster";
-import { SessionProvider } from "./session-provider";
-import { AdminBanner } from "./admin-banner";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
@@ -59,19 +57,14 @@ export default async function RootLayout({ children }: PropsWithChildren<{}>) {
       <body
         className={`bg-white dark:bg-slate-900 ${inter.variable} font-sans`}
       >
-        <SessionProvider>
-          <div
-            className={cn(
-              "relative flex min-h-screen flex-col min-h-screen-ios"
-            )}
-          >
-            <AdminBanner />
-            <div className="flex grow flex-col pb-52 md:pb-36">{children}</div>
-            <Footer />
-            <GoToTopLink />
-          </div>
-          <BlogToaster />
-        </SessionProvider>
+        <div
+          className={cn("relative flex min-h-screen flex-col min-h-screen-ios")}
+        >
+          <div className="flex grow flex-col pb-52 md:pb-36">{children}</div>
+          <Footer />
+          <GoToTopLink />
+        </div>
+        <BlogToaster />
       </body>
     </html>
   );

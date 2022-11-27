@@ -43,8 +43,8 @@ export async function logMainBranchCommitFromGithub() {
   };
 }
 
-export async function getPostSlugsFromGithub(previewBranch: string | null) {
-  const branchName = previewBranch || "main";
+export async function getPostSlugsFromGithub() {
+  const branchName = "main";
 
   const response = await fetchFromGithub(
     `/contents/posts?ref=${encodeURIComponent(branchName)}`
@@ -57,11 +57,8 @@ export async function getPostSlugsFromGithub(previewBranch: string | null) {
   };
 }
 
-export async function getPostContentFromGithub(
-  slug: string,
-  previewBranch: string | null
-) {
-  const branchName = previewBranch || "main";
+export async function getPostContentFromGithub(slug: string) {
+  const branchName = "main";
 
   const response = await fetchFromGithub(
     `/contents/posts/${encodeURIComponent(

@@ -1,6 +1,3 @@
-import { Session } from "next-auth";
-import { BlogSession } from "./types";
-
 const siteTitle = "Felix Mokross";
 export const alternateSiteTitle = "felixmokross.dev";
 
@@ -15,8 +12,4 @@ export function getTitle(pageTitle?: string) {
   }
 
   return `${pageTitle} \u00B7 ${siteTitle}`;
-}
-
-export function isAuthorized(session: BlogSession) {
-  return session.login === process.env.NEXT_PUBLIC_GITHUB_USERNAME;
 }
