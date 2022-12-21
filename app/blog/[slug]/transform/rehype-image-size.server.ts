@@ -1,6 +1,6 @@
 import { selectAll } from "hast-util-select";
 import { Plugin } from "unified";
-import type { Root } from "hast";
+import { Root } from "hast-util-select/lib/types";
 import probe from "probe-image-size";
 
 export const rehypeImageSize: Plugin<Array<void>, Root> = () => {
