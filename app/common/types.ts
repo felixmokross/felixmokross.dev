@@ -6,6 +6,7 @@ export type PostMeta = {
   lastModified: string;
   description: string;
   imageUrl: string;
+  isHidden: boolean;
 };
 
 export type Post = PostMeta & { content: string };

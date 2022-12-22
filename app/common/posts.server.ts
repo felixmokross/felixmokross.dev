@@ -25,6 +25,7 @@ export async function getPostBySlug(slug: string): Promise<Post> {
     lastModified: dayjs(data.lastModified).format(postDateFormat),
     description: data.description,
     imageUrl: data.imageUrl,
+    isHidden: !!data.isHidden,
     content,
   };
 }
@@ -36,15 +37,18 @@ export async function getAllPosts(): Promise<PostMeta[]> {
 
   const posts = (
     await Promise.all(filenames.map((filename) => getPostBySlug(filename)))
-  ).map((post) => ({
-    slug: post.slug,
-    title: post.title,
-    kicker: post.kicker,
-    date: post.date,
-    lastModified: post.lastModified,
-    description: post.description,
-    imageUrl: post.imageUrl,
-  }));
+  )
+    .filter((p) => !p.isHidden)
+    .map((post) => ({
+      slug: post.slug,
+      title: post.title,
+      kicker: post.kicker,
+      date: post.date,
+      lastModified: post.lastModified,
+      description: post.description,
+      imageUrl: post.imageUrl,
+      isHidden: post.isHidden,
+    }));
 
   return orderBy(posts, (p) => p.date, "desc");
 }
