@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { social } from "../common/social";
-import profilePictureCircle from "../../common/profile-picture-circle.png";
+import profilePictureCircle from "../common/profile-picture-circle.png";
 
 export function Bio() {
   return (
