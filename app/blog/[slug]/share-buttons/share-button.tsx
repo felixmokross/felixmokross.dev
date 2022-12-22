@@ -1,5 +1,5 @@
 import { AnchorHTMLAttributes, DetailedHTMLProps, ReactElement } from "react";
-import { IconProps } from "../../../../common/icons";
+import { IconProps } from "../../../common/icons";
 
 export function ShareButton({ icon: Icon, ...props }: ShareButtonProps) {
   return (

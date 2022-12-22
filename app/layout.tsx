@@ -1,10 +1,10 @@
 import { PropsWithChildren } from "react";
-import { rssUrl } from "../common/urls.server";
-import { alternateSiteTitle, domain } from "../common/util";
+import { rssUrl } from "./common/urls.server";
+import { alternateSiteTitle, domain } from "./common/util";
 import "../styles/globals.css";
 import "../styles/highlight.css";
 import { Inter } from "@next/font/google";
-import { cn } from "../common/classnames";
+import { cn } from "./common/classnames";
 import { Footer } from "./footer";
 import { GoToTopLink } from "./go-to-top-link";
 import { BlogToaster } from "./blog-toaster";

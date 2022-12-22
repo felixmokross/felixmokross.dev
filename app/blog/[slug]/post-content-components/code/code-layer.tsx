@@ -1,6 +1,6 @@
 import hljs from "highlight.js/lib/core";
 import { useMemo } from "react";
-import { cn } from "../../../../../common/classnames";
+import { cn } from "../../../../common/classnames";
 
 export function CodeLayer({ className, children, language }: CodeLayerProps) {
   const html = useMemo(

@@ -1,4 +1,4 @@
-import { social } from "../common/social";
+import { social } from "./common/social";
 
 export function Footer() {
   return (

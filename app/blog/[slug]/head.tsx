@@ -1,7 +1,7 @@
-import { getPostUrl } from "../../../common/urls.server";
-import { getTitle } from "../../../common/util";
+import { getPostUrl } from "../../common/urls.server";
+import { getTitle } from "../../common/util";
 import { PageProps } from "./page";
-import { getPostBySlug } from "../../../common/posts.server";
+import { getPostBySlug } from "../../common/posts.server";
 
 export default async function Head({ params }: PageProps) {
   const post = await getPostBySlug(params.slug);

@@ -2,7 +2,7 @@ import { Header } from "./header";
 import { PostContainer } from "./post-container";
 import { PostFrontMatter } from "./post-front-matter";
 import { markdownToHtml } from "./transform/markdown-to-html.server";
-import { getPostBySlug, getPostSlugs } from "../../../common/posts.server";
+import { getPostBySlug, getPostSlugs } from "../../common/posts.server";
 import { PostContent } from "./post-content";
 
 export async function generateStaticParams() {

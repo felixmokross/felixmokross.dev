@@ -1,7 +1,7 @@
 "use client";
 import { Transition } from "@headlessui/react";
 import { useEffect, useState, MouseEvent as ReactMouseEvent } from "react";
-import { DoubleUpChevronIcon } from "../common/icons";
+import { DoubleUpChevronIcon } from "./common/icons";
 
 type ScrollDirection = "up" | "down";
 
