@@ -22,7 +22,7 @@ information on the tech stack and how the blog works.
 The blog posts are hosted in a separate GitHub repository, the _content
 repository_. It has the following file structure:
 
-- `posts/` – All posts are located in this directory.
+- `posts/` – All published posts are located in this directory.
   - `example-post/` – Each post has a directory. The name of the directory is
     used as the post's slug.
     - `post.md` – This file contains the Markdown content of the post (including
@@ -31,38 +31,27 @@ repository_. It has the following file structure:
   - `another-post/`
   - `third-post/`
   - …
+- `drafts/` – Drafts posts are created in this folder and are moved to `posts`
+  to publish them. The blog does not read this folder.
 
 The blog uses **Static Site Generation** (SSG) and therefore needs to be rebuilt
-and deployed when a post is added or updated. For this the app exposes a deploy
+and deployed when a post is added or updated. For this, the app exposes a deploy
 hook on Vercel. Whenever a pull request is merged on the main branch of the
 content repository, a GitHub Action calls the deploy hook, triggering a rebuild
 and deployment of the app. In the build, the posts are retrieved from the
-content repository in order to generate the static pages.
+content repository to generate the static pages.
 
 ## File Structure
 
-In the `/src/pages` directory the routes and their respective pages are defined.
-The pages are:
+In the `/app` directory the routes are defined. They are:
 
-- `api/preview.ts` – API route to enable preview mode
-- `blog/`
-  - `[slug].tsx` – Post page
-  - `index.tsx` – Home page
-  - `rss.xml.ts` – RSS feed route (outputs XML)
-- `_app.tsx`, `_document.tsx` – Custom App and Document components
-- `admin.tsx`: Admin page for enabling preview mode
-- `sitemap.xml.ts`: Sitemap route (outputs XML)
-
-All other code (components, utilities) is located outside of the `pages`
-directory in `/src`. The file structure there resembles the pages. This makes it
-easy to find page-specific code.
-
-Files which end in `.server` contain server-only code (cannot be used in
-components).
+- `blog/` – Home page
+  - `[slug]/` – Post page
 
 ## System Requirements
 
-- [Node.js 14.0.0](https://nodejs.org/) or later (as required by Next.js)
+- [Node.js 18.0.0](https://nodejs.org/) or later (needed for the Fetch API to be
+  available, which is used in the RSS Feed and Sitemap scripts)
 - [pnpm](https://pnpm.io)
 
 ## Running Locally
@@ -81,11 +70,13 @@ components).
 
 ## Scripts
 
-| Command        | Description                                            |
-| -------------- | ------------------------------------------------------ |
-| `pnpm dev`     | Run in development mode                                |
-| `pnpm build`   | Create production build                                |
-| `pnpm analyze` | Create production build and analyze bundles            |
-| `pnpm start`   | Serve production build                                 |
-| `pnpm lint`    | Run linter                                             |
-| `pnpm format`  | Format all files using [Prettier](https://prettier.io) |
+| Command                 | Description                                                 |
+| ----------------------- | ----------------------------------------------------------- |
+| `pnpm dev`              | Run in development mode                                     |
+| `pnpm build`            | Create production build                                     |
+| `pnpm analyze`          | Create production build and analyze bundles                 |
+| `pnpm start`            | Serve production build                                      |
+| `pnpm lint`             | Run linter                                                  |
+| `pnpm format`           | Format all files using [Prettier](https://prettier.io)      |
+| `pnpm generate-rss`     | Generate the RSS feed for the blog (run as part of `build`) |
+| `pnpm generate-sitemap` | Generate the sitemap (run as part of `build`)               |
