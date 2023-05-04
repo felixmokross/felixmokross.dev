@@ -9,7 +9,6 @@ module.exports = withBundleAnalyzer({
     domains: ["ik.imagekit.io"],
   },
   experimental: {
-    scrollRestoration: true,
     appDir: true,
   },
   async redirects() {
